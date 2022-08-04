@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ozon_app/utils/app_colors.dart';
 
 class SearchBar extends StatelessWidget {
   const SearchBar({Key? key}) : super(key: key);
@@ -12,28 +13,28 @@ class SearchBar extends StatelessWidget {
             height: 40,
               decoration: const BoxDecoration(
                 borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(15),
-                    bottomLeft: Radius.circular(15)),
-                color: Colors.red,
+                    topLeft: Radius.circular(20),
+                    bottomLeft: Radius.circular(20)),
+                color: Colors.white,
               ),
-              child: const TextField(
-                  decoration: InputDecoration(
-                      hintText: "Search", prefixIcon: Icon(Icons.search), border: InputBorder.none))),
+              child: TextField(
+                  decoration: InputDecoration(iconColor: AppColors.searchBarColor,
+                      hintText: "Search", prefixIcon: const Icon(Icons.search), border: InputBorder.none))),
         ),
-        const VerticalDivider(color: Colors.grey, width: 1),
+        VerticalDivider(color: AppColors.primaryColor, width: 1),
         // qr icon
         Container(
           height: 40,
           width: 50,
           decoration: const BoxDecoration(
             borderRadius: BorderRadius.only(
-                topRight: Radius.circular(15),
-                bottomRight: Radius.circular(15)),
-            color: Colors.red,
+                topRight: Radius.circular(20),
+                bottomRight: Radius.circular(20)),
+            color: Colors.white,
           ),
-          child: const Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Icon(Icons.qr_code_2),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Icon(Icons.qr_code_2, color: AppColors.primaryColor),
           ),
         ),
       ]

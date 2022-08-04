@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class Section extends StatelessWidget {
+class SectionItem extends StatelessWidget {
   final String text;
   final IconData icon;
 
-  const Section({Key? key, required this.icon, required this.text})
+  const SectionItem({Key? key, required this.icon, required this.text})
       : super(key: key);
 
   @override
