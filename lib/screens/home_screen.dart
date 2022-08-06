@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ozon_app/utils/app_colors.dart';
+import 'package:ozon_app/widgets/recommendations.dart';
 import 'package:ozon_app/widgets/search_bar.dart';
 import 'package:ozon_app/widgets/section_item.dart';
 import 'package:ozon_app/widgets/store_item.dart';
@@ -39,7 +40,8 @@ class HomeScreen extends StatelessWidget {
                       ),
                       Padding(
                         padding: EdgeInsets.all(8.0),
-                        child: Icon(Icons.notifications_none, color: Colors.white),
+                        child:
+                            Icon(Icons.notifications_none, color: Colors.white),
                       )
                     ],
                   ),
@@ -63,35 +65,19 @@ class HomeScreen extends StatelessWidget {
                           padding: const EdgeInsets.all(10),
                           child: Row(
                             children: [
-                              Icon(Icons.location_on_outlined, color: AppColors.primaryColor),
-                              SimpleText(text: "Пункт Ozon | $pickupPoint", color: AppColors.primaryColor),
+                              Icon(Icons.location_on_outlined,
+                                  color: AppColors.primaryColor),
+                              SimpleText(
+                                  text: "Пункт Ozon | $pickupPoint",
+                                  color: AppColors.primaryColor),
                               Expanded(child: Container()),
-                              Icon(Icons.arrow_forward_ios, color: AppColors.primaryColor),
+                              Icon(Icons.arrow_forward_ios,
+                                  color: AppColors.primaryColor),
                             ],
                           ),
                         ),
                         // recommendation cards
-                        SizedBox(
-                          height: 180,
-                          child: PageView(
-                              children: List.generate(
-                                  3,
-                                  (index) => Container(
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                          color: [
-                                            Colors.indigo,
-                                            Colors.orange,
-                                            Colors.purple
-                                          ][index],
-                                        ),
-                                        margin: const EdgeInsets.all(20),
-                                        child: Center(
-                                            child: Text(
-                                                "RECOMMENDATION ${index + 1}")),
-                                      ))),
-                        ),
+                        const Recommendations(),
                         // sections
                         SizedBox(
                           height: 180,
