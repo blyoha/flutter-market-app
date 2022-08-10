@@ -77,7 +77,7 @@ class HomeScreen extends StatelessWidget {
                           ),
                         ),
                         // recommendation cards
-                        const Recommendations(),
+                        Recommendations(),
                         // sections
                         SizedBox(
                           height: 180,
