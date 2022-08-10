@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ozon_app/utils/app_colors.dart';
 import 'package:ozon_app/widgets/recommendations.dart';
 import 'package:ozon_app/widgets/search_bar.dart';
-import 'package:ozon_app/widgets/section_item.dart';
+import 'package:ozon_app/widgets/sections.dart';
 import 'package:ozon_app/widgets/store_item.dart';
 import 'package:ozon_app/widgets/text.dart';
 
@@ -79,23 +79,8 @@ class HomeScreen extends StatelessWidget {
                         // recommendation cards
                         Recommendations(),
                         // sections
-                        SizedBox(
-                          height: 180,
-                          child: PageView(children: [
-                            Wrap(
-                                children: List.generate(
-                                    6,
-                                    (index) => const SectionItem(
-                                        icon: Icons.menu_outlined,
-                                        text: "Каталог"))),
-                            Wrap(
-                                children: List.generate(
-                                    6,
-                                    (index) => const SectionItem(
-                                        icon: Icons.document_scanner_outlined,
-                                        text: "Офис"))),
-                          ]),
-                        ),
+                        const Sections(),
+                        const SizedBox(height: 10),
                         // offers
                         SizedBox(
                           width: MediaQuery.of(context).size.width,
