@@ -9,11 +9,15 @@ class SectionItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.all(20),
-      child: Column(
-        children: [Icon(icon, size: 30,), Text(text)],
-      ),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Icon(
+          icon,
+          size: 30,
+        ),
+        Text(textAlign: TextAlign.center, text)
+      ],
     );
   }
 }
