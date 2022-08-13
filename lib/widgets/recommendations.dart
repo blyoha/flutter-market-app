@@ -1,17 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:ozon_app/utils/app_colors.dart';
-import 'package:ozon_app/widgets/text.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class Recommendations extends StatelessWidget {
   final pageController = PageController();
   final currentPageNotifier = ValueNotifier(0);
-  final List<Color> content = [
-    Colors.indigo,
-    Colors.orange,
-    Colors.purple,
-    Colors.lightGreen,
-  ];
+  final int recommendationCount = 4;
 
   Recommendations({Key? key}) : super(key: key);
 
@@ -23,23 +17,20 @@ class Recommendations extends StatelessWidget {
           children: [
             // page view
             SizedBox(
-              height: 180,
+              height: 170,
               child: PageView.builder(
-                  itemCount: content.length,
                   controller: pageController,
+                  itemCount: recommendationCount,
                   itemBuilder: (context, index) {
                     return Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
-                          color: content[index],
+                          image: DecorationImage(
+                              image: AssetImage(
+                                  "assets/images/recommendations/recommendation${index + 1}.webp"),
+                              fit: BoxFit.fitHeight),
                         ),
-                        margin: const EdgeInsets.all(15),
-                        child: Center(
-                            child: Header(
-                          text: "RECOMMENDATION ${index + 1}",
-                          color: AppColors.primaryColor,
-                          size: 30,
-                        )));
+                        margin: const EdgeInsets.all(15));
                   }),
             ),
             // dot indicators
@@ -50,12 +41,13 @@ class Recommendations extends StatelessWidget {
                 child: Center(
                     child: SmoothPageIndicator(
                         controller: pageController,
-                        count: content.length,
+                        count: recommendationCount,
                         effect: ScrollingDotsEffect(
                             dotHeight: 8,
                             dotWidth: 8,
-                            activeDotColor: AppColors.focusColor,
-                            dotColor: AppColors.secondaryColor))))
+                            activeDotColor: AppColors.backgroundColor,
+                            dotColor:
+                                AppColors.backgroundColor.withOpacity(0.3)))))
           ],
         )
       ],
