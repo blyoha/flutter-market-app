@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:ozon_app/utils/app_colors.dart';
+import 'package:ozon_app/widgets/text.dart';
 
 class SectionItem extends StatelessWidget {
   final String text;
-  final IconData icon;
+  final String image;
 
-  const SectionItem({Key? key, required this.icon, required this.text})
+  final double size = 40;
+
+  const SectionItem({Key? key, required this.image, required this.text})
       : super(key: key);
 
   @override
@@ -12,11 +16,17 @@ class SectionItem extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Icon(
-          icon,
-          size: 30,
+        Image.asset(
+          image,
+          width: size,
+          height: size,
         ),
-        Text(textAlign: TextAlign.center, text)
+        SimpleText(
+          text: text,
+          color: AppColors.primaryColor,
+          size: 10,
+          isCenter: true,
+        )
       ],
     );
   }

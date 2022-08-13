@@ -57,22 +57,23 @@ class HomeScreen extends StatelessWidget {
                       children: [
                         // pickup point
                         Container(
+                          height: 35,
                           decoration: BoxDecoration(
                               border: Border(
                                   bottom: BorderSide(
                                       color: AppColors.secondaryColor,
                                       width: 1))),
-                          padding: const EdgeInsets.all(10),
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
                           child: Row(
                             children: [
                               Icon(Icons.location_on_outlined,
-                                  color: AppColors.primaryColor),
+                                  color: AppColors.focusColor,),
                               SimpleText(
                                   text: "Пункт Ozon | $pickupPoint",
-                                  color: AppColors.primaryColor),
+                                  color: AppColors.focusColor),
                               Expanded(child: Container()),
-                              Icon(Icons.arrow_forward_ios,
-                                  color: AppColors.primaryColor),
+                              Icon(Icons.arrow_forward_ios, size: 15,
+                                  color: AppColors.secondaryColor),
                             ],
                           ),
                         ),
@@ -82,7 +83,8 @@ class HomeScreen extends StatelessWidget {
                         const Sections(),
                         const SizedBox(height: 10),
                         // offers
-                        SizedBox(
+                        Container(
+                          margin: const EdgeInsets.only(left: 5),
                           width: MediaQuery.of(context).size.width,
                           child: Wrap(
                             alignment: WrapAlignment.center,
@@ -91,7 +93,7 @@ class HomeScreen extends StatelessWidget {
                                   "Рюкзак Mr. Skinner Летнее настроение",
                                   1475,
                                   5,
-                                  "assets/images/backpack.webp");
+                                  "assets/images/gas.webp");
                             }),
                           ),
                         )
