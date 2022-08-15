@@ -43,7 +43,7 @@ class _MainScreenState extends State<MainScreen> {
               icon: Icon(
                 Icons.home_outlined,
               ),
-              label: "Home"),
+              label: "Главная"),
           BottomNavigationBarItem(
               icon: Icon(
                 Icons.circle_outlined,
@@ -58,12 +58,12 @@ class _MainScreenState extends State<MainScreen> {
               icon: Icon(
                 Icons.favorite_outline,
               ),
-              label: "Favourite"),
+              label: "Избранное"),
           BottomNavigationBarItem(
               icon: Icon(
                 Icons.person_outlined,
               ),
-              label: "Profile"),
+              label: "Мой Ozon"),
         ],
       ),
       body: pages.elementAt(selectedPageIndex),
