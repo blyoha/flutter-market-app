@@ -22,6 +22,8 @@ class StoreItemDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final int installment = (price / 6).ceil();
+
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       body: SafeArea(
@@ -92,11 +94,120 @@ class StoreItemDetails extends StatelessWidget {
                           ),
                         ],
                       ),
-                    )
+                    ),
+                    const SizedBox(height: 20),
                     // price
+                    Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 20),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          // price
+                          Row(
+                            children: [
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(children: [
+                                    Container(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 2, horizontal: 3),
+                                      color: const Color.fromRGBO(
+                                          255, 225, 120, 1),
+                                      child: Header(
+                                        text: "$installment руб",
+                                        color: AppColors.primaryColor,
+                                        size: 22,
+                                      ),
+                                    ),
+                                    SimpleText(
+                                      text: " \u00d7 6 мес",
+                                      color: AppColors.secondaryColor,
+                                      size: 15,
+                                    ),
+                                  ]),
+                                  Container(
+                                    margin: const EdgeInsets.only(top: 5),
+                                    child: Header(
+                                      text: "$price руб",
+                                      color: AppColors.primaryColor,
+                                      size: 14,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Expanded(child: Container()),
+                              Icon(Icons.arrow_forward_ios,
+                                  size: 15, color: AppColors.secondaryColor)
+                            ],
+                          ),
+                          // discount
+                          Container(
+                            margin: const EdgeInsets.symmetric(vertical: 10),
+                            child: Row(
+                              children: [
+                                Icon(
+                                  Icons.percent_outlined,
+                                  color: AppColors.focusColor,
+                                ),
+                                Expanded(
+                                  child: SimpleText(
+                                    text: "Хочу скидку!",
+                                    color: AppColors.primaryColor,
+                                    size: 14,
+                                  ),
+                                ),
+                                Icon(Icons.arrow_forward_ios,
+                                    size: 15, color: AppColors.secondaryColor),
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    Container(
+                      height: 10,
+                      color: AppColors.secondaryColor.withOpacity(0.1),
+                    ),
                     // name
-                    // colors
-                    // recommendations
+                    Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 20),
+                      child: Header(
+                        text: itemName,
+                        color: AppColors.primaryColor,
+                        size: 15,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    // types
+                    Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 20),
+                      child: SimpleText(
+                        text: "Тип товара",
+                        color: AppColors.primaryColor,
+                        size: 15,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    Container(
+                      margin: const EdgeInsets.symmetric(
+                          horizontal: 20, vertical: 10),
+                      child: Row(
+                        children: [
+                          StoreItemType(type: "Новый", startPrice: price),
+                          StoreItemType(
+                              type: "Уцененный", startPrice: price - 100),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      height: 15,
+                      color: AppColors.secondaryColor.withOpacity(0.1),
+                    ),
                     // description
                   ],
                 ),
@@ -188,6 +299,32 @@ class ImagesScroll extends StatelessWidget {
               activeDotColor: AppColors.primaryColor),
         )
       ],
+    );
+  }
+}
+
+class StoreItemType extends StatelessWidget {
+  final String type;
+  final int startPrice;
+
+  const StoreItemType({Key? key, required this.type, required this.startPrice})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.only(right: 10),
+      padding: const EdgeInsets.all(5),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: AppColors.backgroundColor,
+          border: Border.all(color: AppColors.focusColor, width: 2)),
+      child: Column(
+        children: [
+          SimpleText(text: type, color: AppColors.primaryColor),
+          SimpleText(text: "от $startPrice", color: AppColors.secondaryColor)
+        ],
+      ),
     );
   }
 }
