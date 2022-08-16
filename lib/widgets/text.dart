@@ -29,7 +29,7 @@ class SimpleText extends StatelessWidget {
       {Key? key,
       required this.text,
       required this.color,
-      this.size = 12,
+      this.size = 16,
       this.isCenter = false})
       : super(key: key);
 

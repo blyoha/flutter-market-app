@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
             bodyText2: TextStyle(color: AppColors.primaryColor, fontSize: 15)),
         primarySwatch: Colors.indigo,
         backgroundColor: AppColors.backgroundColor,
-        fontFamily: 'Lato'),
+        fontFamily: 'GT Eesti Pro Display'),
       home: const MainScreen(),
     );
   }
