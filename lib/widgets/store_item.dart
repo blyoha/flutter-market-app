@@ -9,8 +9,11 @@ class StoreItem extends StatefulWidget {
   final double rating;
   final int reviewsCount;
   final String image;
+  final String description;
+  final String specs;
 
-  const StoreItem(this.name, this.price, this.rating, this.reviewsCount, this.image,
+  const StoreItem(this.name, this.price, this.rating, this.reviewsCount,
+      this.image, this.description, this.specs,
       {Key? key})
       : super(key: key);
 
@@ -35,6 +38,8 @@ class _StoreItemState extends State<StoreItem> {
               price: widget.price,
               rating: widget.rating,
               reviewsCount: widget.reviewsCount,
+              description: widget.description,
+              specs: widget.specs,
             );
           }));
         },
@@ -64,7 +69,10 @@ class _StoreItemState extends State<StoreItem> {
             Container(
                 margin: const EdgeInsets.only(bottom: 8),
                 child: SimpleText(
-                    text: widget.name, color: AppColors.primaryColor)),
+                  text: widget.name,
+                  color: AppColors.primaryColor,
+                  size: 14,
+                )),
             // cart button
             if (itemsInCart == 0)
               SizedBox(

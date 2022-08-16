@@ -9,6 +9,8 @@ class StoreItemDetails extends StatelessWidget {
   final int price;
   final double rating;
   final int reviewsCount;
+  final String description;
+  final String specs;
 
   final List images = ["assets/images/gas.webp", "assets/images/gas.webp"];
 
@@ -17,7 +19,9 @@ class StoreItemDetails extends StatelessWidget {
       required this.itemName,
       required this.price,
       required this.rating,
-      required this.reviewsCount})
+      required this.reviewsCount,
+      required this.description,
+      required this.specs})
       : super(key: key);
 
   @override
@@ -108,32 +112,31 @@ class StoreItemDetails extends StatelessWidget {
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
+                                  Container(
+                                    margin: const EdgeInsets.only(top: 5),
+                                    child: Header(
+                                      text: "$price руб",
+                                      color: AppColors.primaryColor,
+                                      size: 22,
+                                    ),
+                                  ),
                                   Row(children: [
                                     Container(
                                       padding: const EdgeInsets.symmetric(
                                           vertical: 2, horizontal: 3),
                                       color: const Color.fromRGBO(
                                           255, 225, 120, 1),
-                                      child: Header(
+                                      child: SimpleText(
                                         text: "$installment руб",
                                         color: AppColors.primaryColor,
-                                        size: 22,
                                       ),
                                     ),
                                     SimpleText(
                                       text: " \u00d7 6 мес",
                                       color: AppColors.secondaryColor,
-                                      size: 15,
-                                    ),
-                                  ]),
-                                  Container(
-                                    margin: const EdgeInsets.only(top: 5),
-                                    child: Header(
-                                      text: "$price руб",
-                                      color: AppColors.primaryColor,
                                       size: 14,
                                     ),
-                                  ),
+                                  ]),
                                 ],
                               ),
                               Expanded(child: Container()),
@@ -198,17 +201,17 @@ class StoreItemDetails extends StatelessWidget {
                           horizontal: 20, vertical: 10),
                       child: Row(
                         children: [
-                          StoreItemType(type: "Новый", startPrice: price),
-                          StoreItemType(
-                              type: "Уцененный", startPrice: price - 100),
+                          StoreItemType(type: "красный", startPrice: price),
+                          StoreItemType(type: "синий", startPrice: price - 100),
                         ],
                       ),
                     ),
                     Container(
-                      height: 15,
+                      height: 10,
                       color: AppColors.secondaryColor.withOpacity(0.1),
                     ),
                     // description
+                    ItemInfo(description: description, specs: specs),
                   ],
                 ),
               ),
@@ -314,7 +317,7 @@ class StoreItemType extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(right: 10),
-      padding: const EdgeInsets.all(5),
+      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           color: AppColors.backgroundColor,
@@ -322,9 +325,86 @@ class StoreItemType extends StatelessWidget {
       child: Column(
         children: [
           SimpleText(text: type, color: AppColors.primaryColor),
-          SimpleText(text: "от $startPrice", color: AppColors.secondaryColor)
+          // SimpleText(text: "от $startPrice", color: AppColors.secondaryColor)
         ],
       ),
+    );
+  }
+}
+
+class ItemInfo extends StatefulWidget {
+  final String description;
+  final String specs;
+
+  const ItemInfo({Key? key, required this.description, required this.specs})
+      : super(key: key);
+
+  @override
+  State<ItemInfo> createState() => _ItemInfoState();
+}
+
+class _ItemInfoState extends State<ItemInfo>
+    with SingleTickerProviderStateMixin {
+  late TabController tabController;
+
+  @override
+  void initState() {
+    tabController = TabController(length: 2, vsync: this);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    tabController.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        // tabs
+        TabBar(
+          indicatorColor: AppColors.focusColor,
+          indicatorSize: TabBarIndicatorSize.label,
+          controller: tabController,
+          tabs: [
+            Tab(
+              child: Header(
+                  text: "ОПИСАНИЕ", color: AppColors.primaryColor, size: 13),
+            ),
+            Tab(
+              child: Header(
+                  text: "ХАРАКТЕРИСТИКИ",
+                  color: AppColors.primaryColor,
+                  size: 13),
+            )
+          ],
+        ),
+        // content
+        SizedBox(
+          height: 200,
+          child: TabBarView(
+              physics: const NeverScrollableScrollPhysics(),
+              controller: tabController,
+              children: [
+                // description
+                Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+                  child: SimpleText(
+                      text: widget.description, color: AppColors.primaryColor),
+                ),
+                // specs
+                Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+                  child: SimpleText(
+                      text: widget.specs, color: AppColors.primaryColor),
+                )
+              ]),
+        )
+      ],
     );
   }
 }
