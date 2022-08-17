@@ -33,6 +33,7 @@ class StoreItemDetails extends StatelessWidget {
       body: SafeArea(
         child: Stack(
           children: [
+            // top bar
             Positioned(
                 top: 0,
                 left: 0,
@@ -212,10 +213,16 @@ class StoreItemDetails extends StatelessWidget {
                     ),
                     // description
                     ItemInfo(description: description, specs: specs),
+                    // bottom space
+                    Container(
+                        height: 220,
+                        color: AppColors.secondaryColor.withOpacity(0.1))
                   ],
                 ),
               ),
-            )
+            ),
+            // bottom bar
+            Positioned(bottom: 0, child: BottomBar(price: price)),
           ],
         ),
       ),
@@ -405,6 +412,55 @@ class _ItemInfoState extends State<ItemInfo>
               ]),
         )
       ],
+    );
+  }
+}
+
+class BottomBar extends StatelessWidget {
+  final int price;
+
+  const BottomBar({Key? key, required this.price}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        border: Border(
+            top: BorderSide(
+                color: AppColors.primaryColor.withOpacity(0.3), width: 0.5)),
+        color: AppColors.backgroundColor,
+      ),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      height: 100,
+      width: MediaQuery.of(context).size.width,
+      child: Column(
+        children: [
+          // price
+          SimpleText(
+            text: "$price руб",
+            color: AppColors.primaryColor,
+            size: 18,
+          ),
+          const SizedBox(
+            height: 5,
+          ),
+          // button
+          SizedBox(
+              height: 50,
+              width: double.maxFinite,
+              child: TextButton(
+                  style: ButtonStyle(
+                      shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8))),
+                      backgroundColor: MaterialStateProperty.all<Color>(
+                          AppColors.focusColor)),
+                  onPressed: () {},
+                  child: const SimpleText(
+                    text: "В корзину",
+                    color: Colors.white,
+                  )))
+        ],
+      ),
     );
   }
 }
