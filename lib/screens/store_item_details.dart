@@ -56,7 +56,8 @@ class StoreItemDetails extends StatelessWidget {
                     const SizedBox(height: 15),
                     // rating, reviews
                     Container(
-                      margin: const EdgeInsets.symmetric(horizontal: 20),
+                      margin: const EdgeInsets.only(
+                          left: 20, right: 20, bottom: 20),
                       padding: const EdgeInsets.symmetric(
                           horizontal: 10, vertical: 5),
                       decoration: BoxDecoration(
@@ -100,7 +101,10 @@ class StoreItemDetails extends StatelessWidget {
                         ],
                       ),
                     ),
-                    const SizedBox(height: 20),
+                    Container(
+                      height: 10,
+                      color: AppColors.secondaryColor.withOpacity(0.1),
+                    ),
                     // price
                     Container(
                       margin: const EdgeInsets.symmetric(horizontal: 20),
@@ -118,11 +122,12 @@ class StoreItemDetails extends StatelessWidget {
                                     child: Header(
                                       text: "$price руб",
                                       color: AppColors.primaryColor,
-                                      size: 22,
+                                      size: 30,
                                     ),
                                   ),
                                   Row(children: [
                                     Container(
+                                      alignment: Alignment.center,
                                       padding: const EdgeInsets.symmetric(
                                           vertical: 2, horizontal: 3),
                                       color: const Color.fromRGBO(
@@ -130,6 +135,7 @@ class StoreItemDetails extends StatelessWidget {
                                       child: SimpleText(
                                         text: "$installment руб",
                                         color: AppColors.primaryColor,
+                                        size: 18,
                                       ),
                                     ),
                                     SimpleText(
@@ -175,7 +181,8 @@ class StoreItemDetails extends StatelessWidget {
                     ),
                     // name
                     Container(
-                      margin: const EdgeInsets.symmetric(horizontal: 20),
+                      margin: const EdgeInsets.symmetric(
+                          horizontal: 20, vertical: 5),
                       child: Header(
                         text: itemName,
                         color: AppColors.primaryColor,
@@ -194,18 +201,10 @@ class StoreItemDetails extends StatelessWidget {
                         size: 15,
                       ),
                     ),
-                    const SizedBox(
-                      height: 5,
-                    ),
                     Container(
                       margin: const EdgeInsets.symmetric(
                           horizontal: 20, vertical: 10),
-                      child: Row(
-                        children: [
-                          StoreItemType(type: "красный", startPrice: price),
-                          StoreItemType(type: "синий", startPrice: price - 100),
-                        ],
-                      ),
+                      child: StoreItemTypes(typeList: ["синий", "красный"]),
                     ),
                     Container(
                       height: 10,
@@ -315,9 +314,9 @@ class ImagesScroll extends StatelessWidget {
 
 class StoreItemType extends StatelessWidget {
   final String type;
-  final int startPrice;
+  final bool isActive;
 
-  const StoreItemType({Key? key, required this.type, required this.startPrice})
+  const StoreItemType({Key? key, required this.type, required this.isActive})
       : super(key: key);
 
   @override
@@ -328,11 +327,14 @@ class StoreItemType extends StatelessWidget {
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           color: AppColors.backgroundColor,
-          border: Border.all(color: AppColors.focusColor, width: 2)),
+          border: Border.all(
+              color: isActive
+                  ? AppColors.focusColor
+                  : AppColors.primaryColor.withOpacity(0.1),
+              width: 2)),
       child: Column(
         children: [
           SimpleText(text: type, color: AppColors.primaryColor),
-          // SimpleText(text: "от $startPrice", color: AppColors.secondaryColor)
         ],
       ),
     );
@@ -460,6 +462,71 @@ class BottomBar extends StatelessWidget {
                     color: Colors.white,
                   )))
         ],
+      ),
+    );
+  }
+}
+
+class StoreItemTypes extends StatefulWidget {
+  List typeList = <String>[];
+
+  StoreItemTypes({Key? key, required this.typeList}) : super(key: key);
+
+  @override
+  State<StoreItemTypes> createState() => _StoreItemTypesState();
+}
+
+class _StoreItemTypesState extends State<StoreItemTypes> {
+  int selectedIndex = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 45,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: widget.typeList.length,
+        itemBuilder: (context, index) {
+          return GestureDetector(
+            child: Container(
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(
+                      width: 2,
+                      color: selectedIndex == index
+                          ? AppColors.focusColor
+                          : AppColors.primaryColor.withOpacity(0.1))),
+              margin: const EdgeInsets.only(right: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+              child: SimpleText(
+                  text: widget.typeList[index], color: AppColors.primaryColor),
+            ),
+            onTap: () {
+              setState(() {
+                selectedIndex = index;
+              });
+            },
+          );
+          //   ListTile(
+          //   tileColor: selectedIndex == index
+          //       ? AppColors.focusColor
+          //       : AppColors.primaryColor.withOpacity(0.1),
+          //   title: Container(
+          //     // margin: const EdgeInsets.only(right: 10),
+          //     // padding:
+          //     //     const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+          //     child: SimpleText(
+          //         text: widget.typeList[index],
+          //         color: AppColors.primaryColor),
+          //   ),
+          //   onTap: () {
+          //     setState(() {
+          //       selectedIndex = index;
+          //     });
+          //   },
+          // );
+        },
       ),
     );
   }
