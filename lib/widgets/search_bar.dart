@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ozon_app/utils/app_colors.dart';
 
 class SearchBar extends StatelessWidget {
-  final double barHeight = 35;
+  final double barHeight = 40;
 
   const SearchBar({Key? key}) : super(key: key);
 
@@ -11,6 +11,7 @@ class SearchBar extends StatelessWidget {
     return Row(children: [
       Expanded(
         child: Container(
+          alignment: Alignment.center,
             height: barHeight,
             decoration: const BoxDecoration(
               borderRadius: BorderRadius.only(
