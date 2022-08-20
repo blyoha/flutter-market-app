@@ -4,9 +4,9 @@ import '../../../../utils/app_colors.dart';
 import '../../../main/presentation/widgets/text.dart';
 
 class StoreItemTypes extends StatefulWidget {
-  final List typeList = <String>[];
+  final List typeList;
 
-  StoreItemTypes({Key? key, required typeList}) : super(key: key);
+  const StoreItemTypes({Key? key, required this.typeList}) : super(key: key);
 
   @override
   State<StoreItemTypes> createState() => _StoreItemTypesState();
