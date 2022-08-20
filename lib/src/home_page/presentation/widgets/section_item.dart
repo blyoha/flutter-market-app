@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ozon_app/utils/app_colors.dart';
-import 'package:ozon_app/widgets/text.dart';
+import 'package:ozon_app/src/main/presentation/widgets/text.dart';
 
 class SectionItem extends StatelessWidget {
   final String text;

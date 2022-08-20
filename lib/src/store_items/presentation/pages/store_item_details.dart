@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:ozon_app/utils/app_colors.dart';
-import 'package:ozon_app/widgets/search_bar.dart';
-import 'package:ozon_app/widgets/text.dart';
+import 'package:ozon_app/src/main/presentation/widgets/text.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+
+import '../../../home_page/presentation/widgets/search_bar.dart';
 
 class StoreItemDetails extends StatelessWidget {
   final String itemName;
@@ -468,9 +469,9 @@ class BottomBar extends StatelessWidget {
 }
 
 class StoreItemTypes extends StatefulWidget {
-  List typeList = <String>[];
+  final List typeList = <String>[];
 
-  StoreItemTypes({Key? key, required this.typeList}) : super(key: key);
+  StoreItemTypes({Key? key, required typeList}) : super(key: key);
 
   @override
   State<StoreItemTypes> createState() => _StoreItemTypesState();
@@ -508,24 +509,6 @@ class _StoreItemTypesState extends State<StoreItemTypes> {
               });
             },
           );
-          //   ListTile(
-          //   tileColor: selectedIndex == index
-          //       ? AppColors.focusColor
-          //       : AppColors.primaryColor.withOpacity(0.1),
-          //   title: Container(
-          //     // margin: const EdgeInsets.only(right: 10),
-          //     // padding:
-          //     //     const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-          //     child: SimpleText(
-          //         text: widget.typeList[index],
-          //         color: AppColors.primaryColor),
-          //   ),
-          //   onTap: () {
-          //     setState(() {
-          //       selectedIndex = index;
-          //     });
-          //   },
-          // );
         },
       ),
     );

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:ozon_app/screens/store_item_details.dart';
+import 'package:ozon_app/src/store_items/presentation/pages/store_item_details.dart';
 import 'package:ozon_app/utils/app_colors.dart';
-import 'package:ozon_app/widgets/text.dart';
+import 'package:ozon_app/src/main/presentation/widgets/text.dart';
 
 class StoreItem extends StatefulWidget {
   final String name;

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:ozon_app/utils/app_colors.dart';
-import 'package:ozon_app/widgets/recommendations.dart';
-import 'package:ozon_app/widgets/search_bar.dart';
-import 'package:ozon_app/widgets/sections.dart';
-import 'package:ozon_app/widgets/store_item.dart';
-import 'package:ozon_app/widgets/text.dart';
+import 'package:ozon_app/src/main/presentation/widgets/text.dart';
+
+import '../widgets/recommendations.dart';
+import '../widgets/search_bar.dart';
+import '../widgets/sections.dart';
+import '../widgets/store_item.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
