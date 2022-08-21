@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:ozon_app/utils/app_colors.dart';
 
-import 'src/main/pages/main_screen.dart';
+import 'src/main/pages/main_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.indigo,
         backgroundColor: AppColors.backgroundColor,
         fontFamily: 'GT Eesti Pro Display'),
-      home: const MainScreen(),
+      home: const MainPage(),
     );
   }
 }

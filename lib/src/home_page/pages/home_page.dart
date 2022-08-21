@@ -7,8 +7,8 @@ import '../widgets/search_bar.dart';
 import '../widgets/sections.dart';
 import '../widgets/store_item.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class HomePage extends StatelessWidget {
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -1,29 +1,29 @@
 import 'package:flutter/material.dart';
 
 import '../../../utils/app_colors.dart';
-import '../../favourite/pages/favourite_screen.dart';
-import '../../fresh/pages/fresh_screen.dart';
-import '../../home_page/pages/home_screen.dart';
-import '../../profile/pages/profile_screen.dart';
-import '../../shopping_cart/pages/cart_screen.dart';
+import '../../favourite/pages/favourite_page.dart';
+import '../../fresh/pages/fresh_page.dart';
+import '../../home_page/pages/home_page.dart';
+import '../../profile/pages/profile_page.dart';
+import '../../shopping_cart/pages/cart_page.dart';
 
 
-class MainScreen extends StatefulWidget {
-  const MainScreen({Key? key}) : super(key: key);
+class MainPage extends StatefulWidget {
+  const MainPage({Key? key}) : super(key: key);
 
   @override
-  State<MainScreen> createState() => _MainScreenState();
+  State<MainPage> createState() => _MainPageState();
 }
 
-class _MainScreenState extends State<MainScreen> {
+class _MainPageState extends State<MainPage> {
   int selectedPageIndex = 0;
 
   final pages = <Widget>[
-    const HomeScreen(),
-    const FreshScreen(),
-    const CartScreen(),
-    const FavouriteScreen(),
-    const ProfileScreen(),
+    const HomePage(),
+    const FreshPage(),
+    const CartPage(),
+    const FavouritePage(),
+    const ProfilePage(),
   ];
 
   @override
