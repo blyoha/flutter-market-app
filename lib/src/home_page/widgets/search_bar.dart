@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ozon_app/utils/app_colors.dart';
+
+import '../../../utils/app_colors.dart';
 
 class SearchBar extends StatelessWidget {
   final double barHeight = 40;

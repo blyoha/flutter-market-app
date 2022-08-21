@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:ozon_app/src/main/presentation/pages/main_screen.dart';
 import 'package:ozon_app/utils/app_colors.dart';
+
+import 'src/main/pages/main_screen.dart';
 
 void main() {
   runApp(const MyApp());

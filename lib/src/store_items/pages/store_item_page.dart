@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:ozon_app/src/store_items/presentation/widgets/item_images.dart';
-import 'package:ozon_app/utils/app_colors.dart';
-import 'package:ozon_app/src/main/presentation/widgets/text.dart';
 
+import '../../../utils/app_colors.dart';
+import '../../main/widgets/text.dart';
 import '../widgets/bottom_bar.dart';
+import '../widgets/item_images.dart';
 import '../widgets/item_info.dart';
 import '../widgets/store_item_types.dart';
 import '../widgets/top_bar.dart';
@@ -208,7 +208,8 @@ class StoreItemDetails extends StatelessWidget {
                     Container(
                       margin: const EdgeInsets.symmetric(
                           horizontal: 20, vertical: 10),
-                      child: StoreItemTypes(typeList: ["синий", "красный"]),
+                      child:
+                          const StoreItemTypes(typeList: ["синий", "красный"]),
                     ),
                     Container(
                       height: 10,

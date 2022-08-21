@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../utils/app_colors.dart';
-import '../../../home_page/presentation/widgets/search_bar.dart';
+import '../../home_page/widgets/search_bar.dart';
 
 class TopBar extends StatelessWidget {
   const TopBar({Key? key}) : super(key: key);

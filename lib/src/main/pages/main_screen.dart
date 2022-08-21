@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:ozon_app/src/shopping_cart/presentation/pages/cart_screen.dart';
-import 'package:ozon_app/src/fresh/presentation/pages/fresh_screen.dart';
-import 'package:ozon_app/src/profile/presentation/pages/profile_screen.dart';
-import 'package:ozon_app/utils/app_colors.dart';
 
-import '../../../favourite/presentation/pages/favourite_screen.dart';
-import '../../../home_page/presentation/pages/home_screen.dart';
+import '../../../utils/app_colors.dart';
+import '../../favourite/pages/favourite_screen.dart';
+import '../../fresh/pages/fresh_screen.dart';
+import '../../home_page/pages/home_screen.dart';
+import '../../profile/pages/profile_screen.dart';
+import '../../shopping_cart/pages/cart_screen.dart';
+
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:ozon_app/utils/app_colors.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+
+import '../../../utils/app_colors.dart';
 
 class Recommendations extends StatelessWidget {
   final pageController = PageController();

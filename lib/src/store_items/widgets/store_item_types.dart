@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../utils/app_colors.dart';
-import '../../../main/presentation/widgets/text.dart';
+import '../../main/widgets/text.dart';
 
 class StoreItemTypes extends StatefulWidget {
   final List typeList;

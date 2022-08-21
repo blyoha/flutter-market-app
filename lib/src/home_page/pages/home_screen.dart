@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ozon_app/utils/app_colors.dart';
-import 'package:ozon_app/src/main/presentation/widgets/text.dart';
 
+import '../../main/widgets/text.dart';
 import '../widgets/recommendations.dart';
 import '../widgets/search_bar.dart';
 import '../widgets/sections.dart';
