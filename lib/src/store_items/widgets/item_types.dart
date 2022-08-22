@@ -3,16 +3,16 @@ import 'package:flutter/material.dart';
 import '../../../../utils/app_colors.dart';
 import '../../main/widgets/text.dart';
 
-class StoreItemTypes extends StatefulWidget {
+class ItemTypes extends StatefulWidget {
   final List typeList;
 
-  const StoreItemTypes({Key? key, required this.typeList}) : super(key: key);
+  const ItemTypes({Key? key, required this.typeList}) : super(key: key);
 
   @override
-  State<StoreItemTypes> createState() => _StoreItemTypesState();
+  State<ItemTypes> createState() => _ItemTypesState();
 }
 
-class _StoreItemTypesState extends State<StoreItemTypes> {
+class _ItemTypesState extends State<ItemTypes> {
   int selectedIndex = 0;
 
   @override

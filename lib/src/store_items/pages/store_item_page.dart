@@ -6,7 +6,7 @@ import '../../shopping_cart/models/store_item_model.dart';
 import '../widgets/bottom_bar.dart';
 import '../widgets/item_images.dart';
 import '../widgets/item_info.dart';
-import '../widgets/store_item_types.dart';
+import '../widgets/item_types.dart';
 import '../widgets/top_bar.dart';
 
 class StoreItemPage extends StatelessWidget {
@@ -194,7 +194,7 @@ class StoreItemPage extends StatelessWidget {
                     Container(
                       margin: const EdgeInsets.symmetric(
                           horizontal: 20, vertical: 10),
-                      child: StoreItemTypes(typeList: storeItem.types),
+                      child: ItemTypes(typeList: storeItem.types),
                     ),
                     Container(
                       height: 10,
