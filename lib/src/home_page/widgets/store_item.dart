@@ -32,18 +32,7 @@ class _StoreItemState extends State<StoreItem> {
       margin: const EdgeInsets.only(left: 8, right: 8, bottom: 20),
       width: width,
       child: GestureDetector(
-        onTap: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) {
-            return StoreItemDetails(
-              itemName: widget.name,
-              price: widget.price,
-              rating: widget.rating,
-              reviewsCount: widget.reviewsCount,
-              description: widget.description,
-              specs: widget.specs,
-            );
-          }));
-        },
+        onTap: () => Get.to(() => StoreItemPage(storeItem: widget.storeItem)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
