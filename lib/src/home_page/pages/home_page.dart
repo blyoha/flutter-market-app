@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../../utils/app_colors.dart';
-import '../../main/widgets/text.dart';
 import '../widgets/catalog.dart';
+import '../widgets/pickup_point.dart';
 import '../widgets/recommendations.dart';
 import '../widgets/search_bar.dart';
 import '../widgets/sections.dart';
@@ -12,7 +12,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String pickupPoint = "ул. Бабушкина, 223";
+    const String pickupPoint = "ул. Бабушкина, 223";
 
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
@@ -57,29 +57,7 @@ class HomePage extends StatelessWidget {
                     child: Column(
                       children: [
                         // pickup point
-                        Container(
-                          height: 35,
-                          decoration: BoxDecoration(
-                              border: Border(
-                                  bottom: BorderSide(
-                                      color: AppColors.secondaryColor,
-                                      width: 1))),
-                          padding: const EdgeInsets.symmetric(horizontal: 10),
-                          child: Row(
-                            children: [
-                              Icon(
-                                Icons.location_on_outlined,
-                                color: AppColors.focusColor,
-                              ),
-                              SimpleText(
-                                  text: "Пункт Ozon | $pickupPoint",
-                                  color: AppColors.focusColor),
-                              Expanded(child: Container()),
-                              Icon(Icons.arrow_forward_ios,
-                                  size: 15, color: AppColors.secondaryColor),
-                            ],
-                          ),
-                        ),
+                        const PickupPoint(location: pickupPoint),
                         // recommendation cards
                         Recommendations(),
                         // sections
