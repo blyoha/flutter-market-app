@@ -2,35 +2,21 @@ import 'package:flutter/material.dart';
 
 import '../../../utils/app_colors.dart';
 import '../../main/widgets/text.dart';
+import '../../shopping_cart/models/store_item_model.dart';
 import '../widgets/bottom_bar.dart';
 import '../widgets/item_images.dart';
 import '../widgets/item_info.dart';
 import '../widgets/store_item_types.dart';
 import '../widgets/top_bar.dart';
 
-class StoreItemDetails extends StatelessWidget {
-  final String itemName;
-  final int price;
-  final double rating;
-  final int reviewsCount;
-  final String description;
-  final String specs;
+class StoreItemPage extends StatelessWidget {
+  final StoreItemModel storeItem;
 
-  final List images = ["assets/images/gas.webp", "assets/images/gas.webp"];
-
-  StoreItemDetails(
-      {Key? key,
-      required this.itemName,
-      required this.price,
-      required this.rating,
-      required this.reviewsCount,
-      required this.description,
-      required this.specs})
-      : super(key: key);
+  const StoreItemPage({Key? key, required this.storeItem}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final int installment = (price / 6).ceil();
+    final int installment = (storeItem.price / 6).ceil();
 
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
@@ -55,7 +41,7 @@ class StoreItemDetails extends StatelessWidget {
                   children: [
                     // images
                     ItemImages(
-                      images: images,
+                      images: storeItem.images,
                     ),
                     const SizedBox(height: 15),
                     // rating, reviews
@@ -83,7 +69,7 @@ class StoreItemDetails extends StatelessWidget {
                                 children: [
                                   Wrap(
                                     children: List.generate(5, (index) {
-                                      if (index < rating) {
+                                      if (index < storeItem.rating) {
                                         return Icon(Icons.star_rounded,
                                             color: AppColors.starColor);
                                       } else {
@@ -96,7 +82,7 @@ class StoreItemDetails extends StatelessWidget {
                                 ],
                               ),
                               SimpleText(
-                                text: "$reviewsCount отзывов",
+                                text: "${storeItem.reviews.length} отзывов",
                                 color: AppColors.focusColor,
                                 size: 14,
                               )
@@ -124,7 +110,7 @@ class StoreItemDetails extends StatelessWidget {
                                   Container(
                                     margin: const EdgeInsets.only(top: 5),
                                     child: Header(
-                                      text: "$price руб",
+                                      text: "${storeItem.price} руб",
                                       color: AppColors.primaryColor,
                                       size: 30,
                                     ),
@@ -188,7 +174,7 @@ class StoreItemDetails extends StatelessWidget {
                       margin: const EdgeInsets.symmetric(
                           horizontal: 20, vertical: 5),
                       child: Header(
-                        text: itemName,
+                        text: storeItem.name,
                         color: AppColors.primaryColor,
                         size: 15,
                       ),
@@ -208,15 +194,14 @@ class StoreItemDetails extends StatelessWidget {
                     Container(
                       margin: const EdgeInsets.symmetric(
                           horizontal: 20, vertical: 10),
-                      child:
-                          const StoreItemTypes(typeList: ["синий", "красный"]),
+                      child: StoreItemTypes(typeList: storeItem.types),
                     ),
                     Container(
                       height: 10,
                       color: AppColors.secondaryColor.withOpacity(0.1),
                     ),
                     // description
-                    ItemInfo(description: description, specs: specs),
+                    ItemInfo(storeItem: storeItem),
                     // bottom space
                     Container(
                         height: 220,
@@ -226,7 +211,7 @@ class StoreItemDetails extends StatelessWidget {
               ),
             ),
             // bottom bar
-            Positioned(bottom: 0, child: BottomBar(price: price)),
+            Positioned(bottom: 0, child: BottomBar(price: storeItem.price)),
           ],
         ),
       ),

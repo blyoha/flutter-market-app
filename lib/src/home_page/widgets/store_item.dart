@@ -1,28 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../utils/app_colors.dart';
 import '../../main/widgets/text.dart';
+import '../../shopping_cart/controllers/shopping_cart_controller.dart';
+import '../../shopping_cart/models/store_item_model.dart';
 import '../../store_items/pages/store_item_page.dart';
 
 class StoreItem extends StatefulWidget {
-  final String name;
-  final int price;
-  final double rating;
-  final int reviewsCount;
-  final String image;
-  final String description;
-  final String specs;
+  final StoreItemModel storeItem;
 
-  const StoreItem(this.name, this.price, this.rating, this.reviewsCount,
-      this.image, this.description, this.specs,
-      {Key? key})
-      : super(key: key);
+  const StoreItem({Key? key, required this.storeItem}) : super(key: key);
 
   @override
   State<StoreItem> createState() => _StoreItemState();
 }
 
 class _StoreItemState extends State<StoreItem> {
+  final ShoppingCartController shoppingCartController =
+      Get.put(ShoppingCartController());
   int itemsInCart = 0;
   final double width = 100;
 
@@ -45,7 +41,7 @@ class _StoreItemState extends State<StoreItem> {
                     borderRadius: BorderRadius.circular(15),
                     color: AppColors.backgroundColor,
                     image: DecorationImage(
-                        image: AssetImage(widget.image),
+                        image: AssetImage(widget.storeItem.images[0]),
                         fit: BoxFit.fitHeight))),
             // price
             Container(
@@ -53,13 +49,15 @@ class _StoreItemState extends State<StoreItem> {
               padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 3),
               decoration: BoxDecoration(color: AppColors.priceColor),
               child: Header(
-                  text: "${widget.price} руб", color: Colors.white, size: 15),
+                  text: "${widget.storeItem.price} руб",
+                  color: Colors.white,
+                  size: 15),
             ),
             // name
             Container(
                 margin: const EdgeInsets.only(bottom: 8),
                 child: SimpleText(
-                  text: widget.name,
+                  text: widget.storeItem.name,
                   color: AppColors.primaryColor,
                   size: 14,
                 )),
@@ -131,6 +129,7 @@ class _StoreItemState extends State<StoreItem> {
   void onAddPressed() {
     setState(() {
       itemsInCart++;
+      shoppingCartController.addStoreItem(widget.storeItem);
     });
   }
 
@@ -138,6 +137,7 @@ class _StoreItemState extends State<StoreItem> {
     setState(() {
       if (itemsInCart > 0) {
         itemsInCart--;
+        shoppingCartController.removeStoreItem(widget.storeItem);
       }
     });
   }

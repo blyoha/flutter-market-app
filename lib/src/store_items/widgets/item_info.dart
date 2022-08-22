@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 
 import '../../../../utils/app_colors.dart';
 import '../../main/widgets/text.dart';
+import '../../shopping_cart/models/store_item_model.dart';
 
 class ItemInfo extends StatefulWidget {
-  final String description;
-  final String specs;
+  final StoreItemModel storeItem;
 
-  const ItemInfo({Key? key, required this.description, required this.specs})
-      : super(key: key);
+  const ItemInfo({Key? key, required this.storeItem}) : super(key: key);
 
   @override
   State<ItemInfo> createState() => _ItemInfoState();
@@ -64,14 +63,16 @@ class _ItemInfoState extends State<ItemInfo>
                   padding:
                       const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
                   child: SimpleText(
-                      text: widget.description, color: AppColors.primaryColor),
+                      text: widget.storeItem.description,
+                      color: AppColors.primaryColor),
                 ),
                 // specs
                 Container(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
                   child: SimpleText(
-                      text: widget.specs, color: AppColors.primaryColor),
+                      text: widget.storeItem.specs.toString(),
+                      color: AppColors.primaryColor),
                 )
               ]),
         )
