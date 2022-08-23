@@ -17,7 +17,7 @@ class StoreItem extends StatefulWidget {
 }
 
 class _StoreItemState extends State<StoreItem> {
-  final ShoppingCartController shoppingCartController =
+  final ShoppingCartController controller =
       Get.put(ShoppingCartController());
   int itemsInCart = 0;
   final double width = 100;
@@ -129,7 +129,7 @@ class _StoreItemState extends State<StoreItem> {
   void onAddPressed() {
     setState(() {
       itemsInCart++;
-      shoppingCartController.addStoreItem(widget.storeItem);
+      controller.addStoreItem(widget.storeItem);
     });
   }
 
@@ -137,7 +137,7 @@ class _StoreItemState extends State<StoreItem> {
     setState(() {
       if (itemsInCart > 0) {
         itemsInCart--;
-        shoppingCartController.removeStoreItem(widget.storeItem);
+        controller.removeStoreItem(widget.storeItem);
       }
     });
   }
