@@ -9,7 +9,6 @@ import '../controllers/shopping_cart_controller.dart';
 import '../widgets/shopping_cart_item.dart';
 
 class CartPage extends StatelessWidget {
-
   const CartPage({Key? key}) : super(key: key);
 
   @override
@@ -24,21 +23,23 @@ class CartPage extends StatelessWidget {
         children: [
           Positioned(
               child: Container(
-            alignment: Alignment.center,
+            padding: const EdgeInsets.only(left: 20),
+            alignment: Alignment.centerLeft,
             width: MediaQuery.of(context).size.width,
             height: 50,
             color: AppColors.backgroundColor,
             child: Header(
               text: "Корзина",
               color: AppColors.primaryColor,
-              size: 15,
+              size: 20,
             ),
           )),
           Container(
-            margin: const EdgeInsets.only(top: 50),
+            margin: const EdgeInsets.only(top: 50, bottom: 46),
             width: MediaQuery.of(context).size.width,
             height: double.maxFinite,
-            child: SingleChildScrollView(physics: BouncingScrollPhysics(),
+            child: SingleChildScrollView(
+              physics: const BouncingScrollPhysics(),
               scrollDirection: Axis.vertical,
               child: Column(
                 children: [
@@ -57,7 +58,9 @@ class CartPage extends StatelessWidget {
                           activeColor: AppColors.focusColor,
                           shape: const CircleBorder(),
                           value: allChecked,
-                          onChanged: (value) {allChecked = value!;},
+                          onChanged: (value) {
+                            allChecked = value!;
+                          },
                         ),
                         const Expanded(
                             child: Text("Выбрать все",
@@ -70,7 +73,7 @@ class CartPage extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Container(height: double.maxFinite, child: CartItems())
+                  CartItems(),
                 ],
               ),
             ),
@@ -93,16 +96,14 @@ class CartItems extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      child: ListView.builder(
-          itemCount: controller.storeItems.length,
-          itemBuilder: (context, index) {
-            return ShoppingCartItem(
-                controller: controller,
-                storeItem: controller.storeItems.keys.toList()[index],
-                quantity: controller.storeItems.values.toList()[index],
-                index: index);
-          }),
+    return Column(
+      children: List.generate(
+          controller.storeItems.length,
+          (index) => ShoppingCartItem(
+              controller: controller,
+              storeItem: controller.storeItems.keys.toList()[index],
+              quantity: controller.storeItems.values.toList()[index],
+              index: index)),
     );
   }
 }
