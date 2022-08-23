@@ -23,6 +23,12 @@ class ShoppingCartController extends GetxController {
 
   // Logic of removing a store item from the cart
   void removeStoreItem(StoreItemModel storeItem) {
+    if (_storeItems.containsKey(storeItem) && storeItems[storeItem] == 1) {
+      storeItems.removeWhere((key, value) => key == storeItem);
+    } else {
+      storeItems[storeItem]--;
+    }
+
     Get.snackbar("Removed from cart", "You've removed the ${storeItem.name}",
         snackPosition: SnackPosition.BOTTOM,
         duration: const Duration(seconds: 1),
