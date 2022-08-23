@@ -67,7 +67,7 @@ class _ShoppingCartItemState extends State<ShoppingCartItem> {
                   children: [
                     // price
                     Header(
-                        text: "${widget.storeItem.price} руб",
+                        text: "${widget.controller.subTotalPrice[widget.index]} руб",
                         color: AppColors.primaryColor, size: 15,),
                     const SizedBox(height: 5),
                     // name
@@ -146,7 +146,7 @@ class _ShoppingCartItemState extends State<ShoppingCartItem> {
                 // quantity
                 Row(
                   children: [
-                    Text("? шт."),
+                    Text("${widget.quantity} шт."),
                     Column(
                       children: const [
                         Icon(Icons.keyboard_arrow_up_rounded),
