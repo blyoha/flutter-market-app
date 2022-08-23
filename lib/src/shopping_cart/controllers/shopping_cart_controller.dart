@@ -38,8 +38,15 @@ class ShoppingCartController extends GetxController {
   // Getting all items in the cart.
   get storeItems => _storeItems;
 
-  // Get item quantity.
-  int getQuantity(StoreItemModel storeItem) {
-    return _storeItems[storeItem];
-  }
+  // Getting total price for one item.
+  get subTotalPrice => _storeItems.entries
+      .map((storeItem) => storeItem.key.price * storeItem.value)
+      .toList();
+
+  // Getting total price for all items.
+  get totalPrice => subTotalPrice.reduce((value, element) => value + element);
+
+  // Getting amount of all items.
+  get totalItems =>
+      _storeItems.values.reduce((value, element) => value + element);
 }
