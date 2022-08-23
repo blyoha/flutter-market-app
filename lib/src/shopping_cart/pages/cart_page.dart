@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import '../../../utils/app_colors.dart';
 import '../../home_page/widgets/pickup_point.dart';
 import '../../main/widgets/text.dart';
+import '../../store_items/widgets/cart_total.dart';
 import '../controllers/shopping_cart_controller.dart';
 import '../widgets/shopping_cart_item.dart';
 
@@ -74,6 +75,11 @@ class CartPage extends StatelessWidget {
               ),
             ),
           ),
+          Positioned(
+              bottom: 0,
+              height: 50,
+              width: MediaQuery.of(context).size.width,
+              child: CartTotal())
         ],
       )),
     );
