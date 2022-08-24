@@ -3,7 +3,9 @@ import 'package:get/get.dart';
 
 import '../../shopping_cart/models/store_item_model.dart';
 
-class ShoppingCartController extends GetxController {
+class CartController extends GetxController {
+  // TODO: Fix dat fucking zero items bug!!
+
   // Dictionary to store the store items
   final _storeItems = {}.obs;
 
@@ -21,8 +23,8 @@ class ShoppingCartController extends GetxController {
         margin: const EdgeInsets.only(bottom: 30));
   }
 
-  // Logic of removing a store item from the cart
-  void removeStoreItem(StoreItemModel storeItem) {
+  // Logic of decreasing a store item from the cart
+  void decreaseStoreItem(StoreItemModel storeItem) {
     if (_storeItems.containsKey(storeItem) && storeItems[storeItem] == 1) {
       storeItems.removeWhere((key, value) => key == storeItem);
     } else {

@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 import '../../../utils/app_colors.dart';
 import '../../main/widgets/text.dart';
-import '../../shopping_cart/controllers/shopping_cart_controller.dart';
+import '../../shopping_cart/controllers/cart_controller.dart';
 import '../../shopping_cart/models/store_item_model.dart';
 import '../../store_items/pages/store_item_page.dart';
 
@@ -17,8 +17,8 @@ class StoreItem extends StatefulWidget {
 }
 
 class _StoreItemState extends State<StoreItem> {
-  final ShoppingCartController controller =
-      Get.put(ShoppingCartController());
+  final CartController controller =
+      Get.put(CartController());
   int itemsInCart = 0;
   final double width = 100;
 
@@ -137,7 +137,7 @@ class _StoreItemState extends State<StoreItem> {
     setState(() {
       if (itemsInCart > 0) {
         itemsInCart--;
-        controller.removeStoreItem(widget.storeItem);
+        controller.decreaseStoreItem(widget.storeItem);
       }
     });
   }
