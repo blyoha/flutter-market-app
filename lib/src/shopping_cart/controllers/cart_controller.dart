@@ -37,6 +37,11 @@ class CartController extends GetxController {
         margin: const EdgeInsets.only(bottom: 30));
   }
 
+  // Logic of removing a store item from the cart
+  void removeStoreItem(StoreItemModel storeItem) {
+    storeItems.removeWhere((key, value) => key == storeItem);
+  }
+
   // Getting all items in the cart.
   get storeItems => _storeItems;
 
