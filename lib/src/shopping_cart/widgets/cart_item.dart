@@ -159,22 +159,74 @@ class CartItem extends StatelessWidget {
                   ),
                 ),
                 // quantity
-                Row(
-                  children: [
-                    Text("$quantity шт."),
-                    Column(
-                      children: const [
-                        Icon(Icons.keyboard_arrow_up_rounded),
-                        Icon(Icons.keyboard_arrow_down_rounded)
-                      ],
-                    )
-                  ],
+                GestureDetector(
+                  onTap: () {
+                    showModalBottomSheet(
+                        context: context,
+                        builder: (context) => const AmountSelection());
+                  },
+                  child: Row(
+                    children: [
+                      Text("$quantity шт."),
+                      Column(
+                        children: const [
+                          Icon(Icons.keyboard_arrow_up_rounded),
+                          Icon(Icons.keyboard_arrow_down_rounded)
+                        ],
+                      )
+                    ],
+                  ),
                 )
               ],
             ),
           )
         ],
       ),
+    );
+  }
+}
+
+class AmountSelection extends StatelessWidget {
+  const AmountSelection({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView(
+      children: [
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Row(
+            children: [
+              const Expanded(
+                  child: Text(
+                "Выберите количество",
+                style: TextStyle(fontWeight: FontWeight.bold),
+              )),
+              TextButton(
+                  onPressed: () {
+                    Get.back();
+                  },
+                  child: const Text("Закрыть"))
+            ],
+          ),
+        ),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: List.generate(
+              10,
+              (index) => Container(
+                    width: MediaQuery.of(context).size.width,
+                    margin: const EdgeInsets.only(left: 20),
+                    padding: const EdgeInsets.only(top: 10, bottom: 10),
+                    decoration: BoxDecoration(
+                        border: Border(
+                            bottom: BorderSide(
+                                color:
+                                    AppColors.primaryColor.withOpacity(0.1)))),
+                    child: Text(index == 9 ? "${index + 1}+" : "${index + 1}"),
+                  )),
+        )
+      ],
     );
   }
 }
