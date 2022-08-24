@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 
 import '../../../utils/app_colors.dart';
 import '../../main/widgets/text.dart';
-import '../controllers/shopping_cart_controller.dart';
+import '../controllers/cart_controller.dart';
 import '../models/store_item_model.dart';
 
-class ShoppingCartItem extends StatefulWidget {
-  final ShoppingCartController controller;
+class CartItem extends StatelessWidget {
+  final CartController controller;
   final StoreItemModel storeItem;
   final int quantity;
   final int index;
 
-  const ShoppingCartItem(
+  const CartItem(
       {Key? key,
       required this.controller,
       required this.storeItem,
@@ -20,14 +20,9 @@ class ShoppingCartItem extends StatefulWidget {
       : super(key: key);
 
   @override
-  State<ShoppingCartItem> createState() => _ShoppingCartItemState();
-}
-
-class _ShoppingCartItemState extends State<ShoppingCartItem> {
-  bool isChecked = true;
-
-  @override
   Widget build(BuildContext context) {
+    bool isChecked = true;
+
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 15),
       child: Column(
@@ -47,13 +42,9 @@ class _ShoppingCartItemState extends State<ShoppingCartItem> {
                       activeColor: AppColors.focusColor,
                       shape: const CircleBorder(),
                       value: isChecked,
-                      onChanged: (bool? value) {
-                        setState(() {
-                          isChecked = value!;
-                        });
-                      }),
+                      onChanged: (bool? value) {}),
                   Image.asset(
-                    widget.storeItem.images[0],
+                    storeItem.images[0],
                     width: 80,
                     height: 80,
                   )
@@ -67,15 +58,17 @@ class _ShoppingCartItemState extends State<ShoppingCartItem> {
                   children: [
                     // price
                     Header(
-                        text: "${widget.controller.subTotalPrice[widget.index]} руб",
-                        color: AppColors.primaryColor, size: 15,),
+                      text: "${controller.subTotalPrice[index]} руб",
+                      color: AppColors.primaryColor,
+                      size: 15,
+                    ),
                     const SizedBox(height: 5),
                     // name
                     SizedBox(
                       width: 210,
                       child: Flexible(
                         child: Text(
-                          widget.storeItem.name,
+                          storeItem.name,
                           maxLines: 3,
                           overflow: TextOverflow.ellipsis,
                         ),
@@ -99,8 +92,7 @@ class _ShoppingCartItemState extends State<ShoppingCartItem> {
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 5),
                 child: SimpleText(
-                    text:
-                        "Частями по ${(widget.storeItem.price / 6).ceil()} / мес",
+                    text: "Частями по ${(storeItem.price / 6).ceil()} / мес",
                     color: AppColors.primaryColor,
                     size: 12),
               ),
@@ -146,7 +138,7 @@ class _ShoppingCartItemState extends State<ShoppingCartItem> {
                 // quantity
                 Row(
                   children: [
-                    Text("${widget.quantity} шт."),
+                    Text("$quantity шт."),
                     Column(
                       children: const [
                         Icon(Icons.keyboard_arrow_up_rounded),
