@@ -5,8 +5,8 @@ import '../../../utils/app_colors.dart';
 import '../../home_page/widgets/pickup_point.dart';
 import '../../main/widgets/text.dart';
 import '../../store_items/widgets/cart_total.dart';
-import '../controllers/shopping_cart_controller.dart';
-import '../widgets/shopping_cart_item.dart';
+import '../controllers/cart_controller.dart';
+import '../widgets/cart_item.dart';
 
 class CartPage extends StatelessWidget {
   const CartPage({Key? key}) : super(key: key);
@@ -90,20 +90,26 @@ class CartPage extends StatelessWidget {
 }
 
 class CartItems extends StatelessWidget {
-  final ShoppingCartController controller = Get.find();
+  final CartController controller = Get.find();
 
   CartItems({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: List.generate(
-          controller.storeItems.length,
-          (index) => ShoppingCartItem(
-              controller: controller,
-              storeItem: controller.storeItems.keys.toList()[index],
-              quantity: controller.storeItems.values.toList()[index],
-              index: index)),
-    );
+    if (controller.totalItems != 0) {
+      return Obx(
+        () => Column(
+          children: List.generate(
+              controller.storeItems.length,
+              (index) => CartItem(
+                  controller: controller,
+                  storeItem: controller.storeItems.keys.toList()[index],
+                  quantity: controller.storeItems.values.toList()[index],
+                  index: index)),
+        ),
+      );
+    } else {
+      return const Center(child: Text("Корзина пуста"));
+    }
   }
 }
