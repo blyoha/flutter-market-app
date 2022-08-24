@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../utils/app_colors.dart';
 import '../../main/widgets/text.dart';
@@ -119,20 +120,42 @@ class CartItem extends StatelessWidget {
                 ]),
                 // remove
                 Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 10),
-                    child: Row(children: [
-                      Padding(
-                        padding: const EdgeInsets.only(right: 5),
-                        child: Icon(
-                          Icons.delete_outline_rounded,
-                          color: AppColors.primaryColor,
-                          size: 20,
+                  child: GestureDetector(
+                    onTap: () {
+                      showDialog(
+                          context: context,
+                          builder: (context) => AlertDialog(
+                                  content: const Text(
+                                      "Вы точно хотите удалить товар? Отменить данное действие будет невозможно."),
+                                  actions: [
+                                    TextButton(
+                                        onPressed: () {
+                                          Get.back();
+                                        },
+                                        child: const Text("Отмена")),
+                                    TextButton(
+                                        onPressed: () {
+                                          controller.removeStoreItem(storeItem);
+                                          Get.back();
+                                        },
+                                        child: const Text("Удолить товар"))
+                                  ]));
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 10),
+                      child: Row(children: [
+                        Padding(
+                          padding: const EdgeInsets.only(right: 5),
+                          child: Icon(
+                            Icons.delete_outline_rounded,
+                            color: AppColors.primaryColor,
+                            size: 20,
+                          ),
                         ),
-                      ),
-                      const Text("Удалить")
-                      // SimpleText(text: "Удалить", color: AppColors.primaryColor)
-                    ]),
+                        const Text("Удалить")
+                        // SimpleText(text: "Удалить", color: AppColors.primaryColor)
+                      ]),
+                    ),
                   ),
                 ),
                 // quantity
