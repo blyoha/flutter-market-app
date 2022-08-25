@@ -67,16 +67,44 @@ class _ItemInfoState extends State<ItemInfo>
                       color: AppColors.primaryColor),
                 ),
                 // specs
-                Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
-                  child: SimpleText(
-                      text: widget.storeItem.specs.toString(),
-                      color: AppColors.primaryColor),
+                Specs(
+                  storeItem: widget.storeItem,
                 )
               ]),
         )
       ],
+    );
+  }
+}
+
+class Specs extends StatelessWidget {
+  final StoreItemModel storeItem;
+
+  const Specs({Key? key, required this.storeItem}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+      child: Column(
+          children: List.generate(
+        storeItem.specs.length,
+        (index) => Row(
+          children: [
+            SimpleText(
+                text: storeItem.specs.keys.toList()[index],
+                color: AppColors.secondaryColor),
+            Expanded(
+                child: Text("." * 100,
+                    style: TextStyle(
+                        color: AppColors.primaryColor.withOpacity(0.3)),
+                    maxLines: 1)),
+            SimpleText(
+                text: storeItem.specs.values.toList()[index],
+                color: AppColors.primaryColor)
+          ],
+        ),
+      )),
     );
   }
 }
