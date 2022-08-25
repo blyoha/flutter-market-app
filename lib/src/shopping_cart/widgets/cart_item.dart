@@ -138,7 +138,7 @@ class CartItem extends StatelessWidget {
                                           controller.removeStoreItem(storeItem);
                                           Get.back();
                                         },
-                                        child: const Text("Удолить товар"))
+                                        child: const Text("Удалить товар"))
                                   ]));
                     },
                     child: Padding(
@@ -163,15 +163,18 @@ class CartItem extends StatelessWidget {
                   onTap: () {
                     showModalBottomSheet(
                         context: context,
-                        builder: (context) => const AmountSelection());
+                        builder: (context) => AmountSelection(
+                            controller: controller,
+                            storeItem: storeItem,
+                            quantity: quantity - 1));
                   },
                   child: Row(
                     children: [
                       Text("$quantity шт."),
                       Column(
                         children: const [
-                          Icon(Icons.keyboard_arrow_up_rounded),
-                          Icon(Icons.keyboard_arrow_down_rounded)
+                          Icon(Icons.keyboard_arrow_up_rounded, size: 20),
+                          Icon(Icons.keyboard_arrow_down_rounded, size: 20)
                         ],
                       )
                     ],
@@ -187,7 +190,16 @@ class CartItem extends StatelessWidget {
 }
 
 class AmountSelection extends StatelessWidget {
-  const AmountSelection({Key? key}) : super(key: key);
+  final CartController controller;
+  final StoreItemModel storeItem;
+  final int? quantity;
+
+  const AmountSelection(
+      {Key? key,
+      required this.controller,
+      required this.storeItem,
+      required this.quantity})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -214,19 +226,38 @@ class AmountSelection extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: List.generate(
               10,
-              (index) => Container(
-                    width: MediaQuery.of(context).size.width,
-                    margin: const EdgeInsets.only(left: 20),
-                    padding: const EdgeInsets.only(top: 10, bottom: 10),
-                    decoration: BoxDecoration(
-                        border: Border(
-                            bottom: BorderSide(
-                                color:
-                                    AppColors.primaryColor.withOpacity(0.1)))),
-                    child: Text(index == 9 ? "${index + 1}+" : "${index + 1}"),
+              (index) => GestureDetector(
+                    onTap: () {
+                      controller.storeItems[storeItem] = index + 1;
+                      Get.back();
+                    },
+                    child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      margin: const EdgeInsets.only(left: 20),
+                      padding:
+                          const EdgeInsets.only(top: 10, bottom: 10, right: 20),
+                      decoration: BoxDecoration(
+                          border: Border(
+                              bottom: BorderSide(
+                                  color: AppColors.primaryColor
+                                      .withOpacity(0.1)))),
+                      child: Row(
+                        children: [
+                          Expanded(child: Text("${index + 1}")),
+                          if (index == quantity)
+                            Icon(
+                              Icons.check,
+                              color: AppColors.focusColor,
+                              size: 18,
+                            )
+                        ],
+                      ),
+                    ),
                   )),
         )
       ],
     );
   }
+
+  chooseAmount() {}
 }
