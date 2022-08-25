@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../utils/app_colors.dart';
 import '../../main/widgets/text.dart';
+import '../../shopping_cart/controllers/cart_controller.dart';
 import '../../shopping_cart/models/store_item_model.dart';
 import '../widgets/bottom_bar.dart';
 import '../widgets/item_images.dart';
@@ -11,8 +13,9 @@ import '../widgets/top_bar.dart';
 
 class StoreItemPage extends StatelessWidget {
   final StoreItemModel storeItem;
+  final CartController controller = Get.find();
 
-  const StoreItemPage({Key? key, required this.storeItem}) : super(key: key);
+  StoreItemPage({Key? key, required this.storeItem}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -211,7 +214,7 @@ class StoreItemPage extends StatelessWidget {
               ),
             ),
             // bottom bar
-            Positioned(bottom: 0, child: BottomBar(price: storeItem.price)),
+            Positioned(bottom: 0, child: BottomBar(controller: controller, storeItem: storeItem,)),
           ],
         ),
       ),

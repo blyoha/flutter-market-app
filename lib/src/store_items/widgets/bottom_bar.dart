@@ -1,15 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../../utils/app_colors.dart';
 import '../../main/widgets/text.dart';
+import '../../shopping_cart/controllers/cart_controller.dart';
+import '../../shopping_cart/models/store_item_model.dart';
+import '../../shopping_cart/pages/cart_page.dart';
 
-class BottomBar extends StatelessWidget {
-  final int price;
+class BottomBar extends StatefulWidget {
+  final CartController controller;
+  final StoreItemModel storeItem;
 
-  const BottomBar({Key? key, required this.price}) : super(key: key);
+  const BottomBar({Key? key, required this.controller, required this.storeItem})
+      : super(key: key);
 
   @override
+  State<BottomBar> createState() => _BottomBarState();
+}
+
+class _BottomBarState extends State<BottomBar> {
+  @override
   Widget build(BuildContext context) {
+    bool isInCart = widget.controller.storeItems.containsKey(widget.storeItem);
+
     return Container(
       decoration: BoxDecoration(
         border: Border(
@@ -24,7 +37,7 @@ class BottomBar extends StatelessWidget {
         children: [
           // price
           SimpleText(
-            text: "$price руб",
+            text: "${widget.storeItem.price} руб",
             color: AppColors.primaryColor,
             size: 18,
           ),
@@ -39,11 +52,20 @@ class BottomBar extends StatelessWidget {
                   style: ButtonStyle(
                       shape: MaterialStateProperty.all(RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8))),
-                      backgroundColor: MaterialStateProperty.all<Color>(
-                          AppColors.focusColor)),
-                  onPressed: () {},
-                  child: const SimpleText(
-                    text: "В корзину",
+                      backgroundColor: MaterialStateProperty.all<Color>(isInCart
+                          ? AppColors.priceColor
+                          : AppColors.focusColor)),
+                  onPressed: () {
+                    setState(() {
+                      if (isInCart) {
+                        Get.to(const CartPage());
+                      } else {
+                        widget.controller.addStoreItem(widget.storeItem);
+                      }
+                    });
+                  },
+                  child: SimpleText(
+                    text: isInCart ? "К корзине" : "В корзину",
                     color: Colors.white,
                   )))
         ],
