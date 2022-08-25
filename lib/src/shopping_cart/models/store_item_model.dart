@@ -4,7 +4,7 @@ class StoreItemModel {
   final int price;
   final double rating;
   final String description;
-  final List specs;
+  final Map<String, String> specs;
   final List reviews;
   final List types;
 
@@ -25,7 +25,11 @@ class StoreItemModel {
         price: 1775,
         rating: 4.9,
         description: "Рюкзак Mr. Skinner Летнее настроение",
-        specs: ["Ткань", "Унисекс"],
+        specs: {
+          "Цвет": "бежевый",
+          "Материал": "Вельвет, Текстиль, Ткань",
+          "Размер рюкзака": "Маленький (до 20 л.)"
+        },
         reviews: [],
         types: ["Серый", "Синий"]),
     StoreItemModel(
@@ -35,7 +39,11 @@ class StoreItemModel {
         rating: 4.6,
         description:
             "Синтетическое всесезонное моторное масло TAKAYAMA SAE 5W-30 API SL/CF",
-        specs: ["5W-30", "4", "Синтетическое"],
+        specs: {
+          "Вязкость по SAE": "5W-30",
+          "Объем, л": "4",
+          "Вид масла": "Синтетическое"
+        },
         reviews: [],
         types: ["1 л", "4 л", "20 л"]),
     StoreItemModel(
@@ -45,7 +53,11 @@ class StoreItemModel {
         rating: 4.9,
         description:
             "Уникальный бленд сортов Арабики из Бразилии, Эфиопии и Индии.",
-        specs: ["Арабика"],
+        specs: {
+          "Тип кофе": "Кофе молотый",
+          "Состав кофе": "Арабика",
+          "Степень обжарки": "Темная"
+        },
         reviews: [],
         types: ["100 г", "250 г", "450 г"]),
   ];
