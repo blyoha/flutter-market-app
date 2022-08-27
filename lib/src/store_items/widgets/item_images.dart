@@ -21,8 +21,8 @@ class ItemImages extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             controller: pageController,
             children: List.generate(images.length, (index) {
-              return Image(
-                image: AssetImage(images[index]),
+              return Image.network(
+                images[index],
                 fit: BoxFit.fitHeight,
               );
             }),

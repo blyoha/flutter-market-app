@@ -44,7 +44,7 @@ class CartItem extends StatelessWidget {
                       shape: const CircleBorder(),
                       value: isChecked,
                       onChanged: (bool? value) {}),
-                  Image.asset(
+                  Image.network(
                     storeItem.images[0],
                     width: 80,
                     height: 80,

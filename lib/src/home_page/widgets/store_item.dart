@@ -40,7 +40,7 @@ class _StoreItemState extends State<StoreItem> {
                     borderRadius: BorderRadius.circular(15),
                     color: AppColors.backgroundColor,
                     image: DecorationImage(
-                        image: AssetImage(widget.storeItem.images[0]),
+                        image: NetworkImage(widget.storeItem.images[0]),
                         fit: BoxFit.fitHeight))),
             // price
             Container(
