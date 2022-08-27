@@ -1,20 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-import '../../shopping_cart/models/store_item_model.dart';
+import '../controllers/store_item_controller.dart';
 import 'store_item.dart';
 
 class Catalog extends StatelessWidget {
-  const Catalog({Key? key}) : super(key: key);
+  final controller = Get.put(StoreItemController());
+
+  Catalog({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(left: 5),
-      width: MediaQuery.of(context).size.width,
-      child: Wrap(
-        alignment: WrapAlignment.center,
-        children: List.generate(StoreItemModel.storeItems.length,
-            (index) => StoreItem(storeItem: StoreItemModel.storeItems[index])),
+    return Obx(
+      () => Container(
+        margin: const EdgeInsets.only(left: 5),
+        width: MediaQuery.of(context).size.width,
+        child: Wrap(
+          alignment: WrapAlignment.center,
+          children: List.generate(controller.storeItems.length,
+              (index) => StoreItem(storeItem: controller.storeItems[index])),
+        ),
       ),
     );
   }
