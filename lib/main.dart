@@ -2,8 +2,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:ozon_app/utils/constants.dart';
 
-import 'package:ozon_app/utils/app_colors.dart';
 import 'src/main/pages/main_page.dart';
 
 Future<void> main() async {

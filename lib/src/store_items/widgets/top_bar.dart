@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../utils/app_colors.dart';
+import '../../../utils/constants.dart';
 import '../../home_page/widgets/search_bar.dart';
 
 class TopBar extends StatelessWidget {

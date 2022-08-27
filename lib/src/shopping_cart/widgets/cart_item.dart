@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../utils/app_colors.dart';
+import '../../../utils/constants.dart';
 import '../../main/widgets/text.dart';
 import '../controllers/cart_controller.dart';
 import '../models/store_item_model.dart';
@@ -242,8 +242,9 @@ class AmountSelection extends StatelessWidget {
                                   color: AppColors.primaryColor
                                       .withOpacity(0.1)))),
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Expanded(child: Text("${index + 1}")),
+                          Text("${index + 1}"),
                           if (index == quantity)
                             Icon(
                               Icons.check,
@@ -258,6 +259,4 @@ class AmountSelection extends StatelessWidget {
       ],
     );
   }
-
-  chooseAmount() {}
 }

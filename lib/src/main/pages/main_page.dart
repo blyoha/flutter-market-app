@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 
-import '../../../utils/app_colors.dart';
+import '../../../utils/constants.dart';
 import '../../favourite/pages/favourite_page.dart';
 import '../../fresh/pages/fresh_page.dart';
 import '../../home_page/pages/home_page.dart';
 import '../../profile/pages/profile_page.dart';
 import '../../shopping_cart/pages/cart_page.dart';
-
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);

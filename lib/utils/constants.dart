@@ -12,3 +12,10 @@ class AppColors {
 
   static Color searchBarColor = const Color.fromRGBO(140, 144, 147, 1);
 }
+
+List<String> recommendationsUrl = <String>[
+  "https://cdn1.ozone.ru/s3/cms/12/tdb/wc450/456x150x2-premium_net.jpg",
+  "https://cdn1.ozone.ru/s3/cms/31/tb4/wc450/456x150x2_rassrochka.jpg",
+  "https://cdn1.ozone.ru/s3/cms/f0/tee/wc450/456x150x2-3.jpg",
+  "https://cdn1.ozone.ru/s3/cms/ba/tfc/wc450/3_-_klimat_desk.jpg"
+];

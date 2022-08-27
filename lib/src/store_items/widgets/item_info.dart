@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../utils/app_colors.dart';
+import '../../../utils/constants.dart';
 import '../../main/widgets/text.dart';
 import '../../shopping_cart/models/store_item_model.dart';
 
@@ -53,7 +53,7 @@ class _ItemInfoState extends State<ItemInfo>
         ),
         // content
         SizedBox(
-          height: 200,
+          height: 300,
           child: TabBarView(
               physics: const NeverScrollableScrollPhysics(),
               controller: tabController,
@@ -62,9 +62,8 @@ class _ItemInfoState extends State<ItemInfo>
                 Container(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
-                  child: SimpleText(
-                      text: widget.storeItem.description,
-                      color: AppColors.primaryColor),
+                  child: Text(widget.storeItem.description,
+                      overflow: TextOverflow.ellipsis, maxLines: 12),
                 ),
                 // specs
                 Specs(
@@ -89,20 +88,21 @@ class Specs extends StatelessWidget {
       child: Column(
           children: List.generate(
         storeItem.specs.length,
-        (index) => Row(
-          children: [
-            SimpleText(
-                text: storeItem.specs.keys.toList()[index],
-                color: AppColors.secondaryColor),
-            Expanded(
-                child: Text("." * 100,
-                    style: TextStyle(
-                        color: AppColors.primaryColor.withOpacity(0.3)),
-                    maxLines: 1)),
-            SimpleText(
-                text: storeItem.specs.values.toList()[index],
-                color: AppColors.primaryColor)
-          ],
+        (index) => Padding(
+          padding: const EdgeInsets.all(5),
+          child: Row(
+            children: [
+              Text(storeItem.specs.keys.toList()[index]),
+              Expanded(
+                  child: Text("." * 100,
+                      style: TextStyle(
+                          color: AppColors.primaryColor.withOpacity(0.3)),
+                      maxLines: 1)),
+              SimpleText(
+                  text: storeItem.specs.values.toList()[index],
+                  color: AppColors.primaryColor)
+            ],
+          ),
         ),
       )),
     );

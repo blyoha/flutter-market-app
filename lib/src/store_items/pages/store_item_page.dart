@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../utils/app_colors.dart';
+import '../../../utils/constants.dart';
 import '../../main/widgets/text.dart';
 import '../../shopping_cart/controllers/cart_controller.dart';
 import '../../shopping_cart/models/store_item_model.dart';
@@ -214,7 +214,12 @@ class StoreItemPage extends StatelessWidget {
               ),
             ),
             // bottom bar
-            Positioned(bottom: 0, child: BottomBar(controller: controller, storeItem: storeItem,)),
+            Positioned(
+                bottom: 0,
+                child: BottomBar(
+                  controller: controller,
+                  storeItem: storeItem,
+                )),
           ],
         ),
       ),

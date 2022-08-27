@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../utils/app_colors.dart';
+import '../../../utils/constants.dart';
 import '../../main/widgets/text.dart';
 import '../../shopping_cart/controllers/cart_controller.dart';
 import '../../shopping_cart/models/store_item_model.dart';
 import '../../shopping_cart/pages/cart_page.dart';
 
 class BottomBar extends StatefulWidget {
+  // TODO: Fix activated button when go back.
   final CartController controller;
   final StoreItemModel storeItem;
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../utils/app_colors.dart';
+import '../../../utils/constants.dart';
 
 class PickupPoint extends StatelessWidget {
   final String location;

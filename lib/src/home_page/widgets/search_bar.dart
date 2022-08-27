@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../utils/app_colors.dart';
+import '../../../utils/constants.dart';
 
 class SearchBar extends StatelessWidget {
   final double barHeight = 40;
@@ -12,7 +12,7 @@ class SearchBar extends StatelessWidget {
     return Row(children: [
       Expanded(
         child: Container(
-          alignment: Alignment.center,
+            alignment: Alignment.center,
             height: barHeight,
             decoration: const BoxDecoration(
               borderRadius: BorderRadius.only(

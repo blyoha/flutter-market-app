@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../utils/app_colors.dart';
+import '../../../utils/constants.dart';
 import '../../main/widgets/text.dart';
 import '../../shopping_cart/controllers/cart_controller.dart';
 
@@ -12,13 +12,14 @@ class CartTotal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() =>
-      Container(
+    return Obx(
+      () => Container(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
         decoration: BoxDecoration(
             color: AppColors.backgroundColor,
             border: Border(
-                top: BorderSide(color: AppColors.primaryColor.withOpacity(0.1)))),
+                top: BorderSide(
+                    color: AppColors.primaryColor.withOpacity(0.1)))),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -30,13 +31,14 @@ class CartTotal extends StatelessWidget {
                 // total price
                 Text(
                   "${controller.totalPrice}",
-                  style:
-                      const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                  style: const TextStyle(
+                      fontWeight: FontWeight.bold, fontSize: 18),
                 ),
                 // items count
                 Text(
                   "${controller.totalItems} товаров",
-                  style: TextStyle(color: AppColors.secondaryColor, fontSize: 12),
+                  style:
+                      TextStyle(color: AppColors.secondaryColor, fontSize: 12),
                 )
               ],
             ),

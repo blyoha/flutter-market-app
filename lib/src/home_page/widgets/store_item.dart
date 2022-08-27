@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../utils/app_colors.dart';
+import '../../../utils/constants.dart';
 import '../../main/widgets/text.dart';
 import '../../shopping_cart/controllers/cart_controller.dart';
 import '../../shopping_cart/models/store_item_model.dart';
@@ -17,8 +17,7 @@ class StoreItem extends StatefulWidget {
 }
 
 class _StoreItemState extends State<StoreItem> {
-  final CartController controller =
-      Get.put(CartController());
+  final CartController controller = Get.put(CartController());
   int itemsInCart = 0;
   final double width = 100;
 

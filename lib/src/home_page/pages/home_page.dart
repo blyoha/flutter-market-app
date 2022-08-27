@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../utils/app_colors.dart';
+import '../../../utils/constants.dart';
 import '../widgets/catalog.dart';
 import '../widgets/pickup_point.dart';
 import '../widgets/recommendations.dart';
@@ -53,6 +53,7 @@ class HomePage extends StatelessWidget {
                 height: double.maxFinite,
                 width: MediaQuery.of(context).size.width,
                 child: SingleChildScrollView(
+                  physics: const BouncingScrollPhysics(),
                     scrollDirection: Axis.vertical,
                     child: Column(
                       children: [
@@ -64,7 +65,7 @@ class HomePage extends StatelessWidget {
                         const Sections(),
                         const SizedBox(height: 10),
                         // offers
-                        const Catalog()
+                        Catalog()
                       ],
                     ))),
           ],

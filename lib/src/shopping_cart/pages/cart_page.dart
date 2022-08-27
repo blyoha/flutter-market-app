@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../utils/app_colors.dart';
+import '../../../utils/constants.dart';
 import '../../home_page/widgets/pickup_point.dart';
 import '../../main/widgets/text.dart';
 import '../../store_items/widgets/cart_total.dart';
