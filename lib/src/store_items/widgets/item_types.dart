@@ -4,7 +4,7 @@ import '../../../../utils/app_colors.dart';
 import '../../main/widgets/text.dart';
 
 class ItemTypes extends StatefulWidget {
-  final List typeList;
+  final Map<String, dynamic> typeList;
 
   const ItemTypes({Key? key, required this.typeList}) : super(key: key);
 
@@ -36,7 +36,7 @@ class _ItemTypesState extends State<ItemTypes> {
               margin: const EdgeInsets.only(right: 10),
               padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
               child: SimpleText(
-                  text: widget.typeList[index], color: AppColors.primaryColor),
+                  text: widget.typeList.keys.toList()[index], color: AppColors.primaryColor),
             ),
             onTap: () {
               setState(() {
