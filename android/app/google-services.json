@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "216520167040",
+    "project_id": "ozon-app-5e025",
+    "storage_bucket": "ozon-app-5e025.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:216520167040:android:eae73a816a36e4b180e065",
+        "android_client_info": {
+          "package_name": "com.blyoha.ozon_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "216520167040-f7p0d4it3dquu7hhi0obvsbovs96pmj0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7e7dMJSqKK9cdrVcHy7XZ_67yYh4Phco"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "216520167040-f7p0d4it3dquu7hhi0obvsbovs96pmj0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
