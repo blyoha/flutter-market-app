@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 import '../../../utils/constants.dart';
 import '../../main/widgets/text.dart';
-import '../../shopping_cart/controllers/cart_controller.dart';
+import '../controllers/cart_controller.dart';
 
 class CartTotal extends StatelessWidget {
   final CartController controller = Get.find();
@@ -30,7 +30,7 @@ class CartTotal extends StatelessWidget {
               children: [
                 // total price
                 Text(
-                  "${controller.totalPrice}",
+                  "${controller.totalPrice} руб",
                   style: const TextStyle(
                       fontWeight: FontWeight.bold, fontSize: 18),
                 ),

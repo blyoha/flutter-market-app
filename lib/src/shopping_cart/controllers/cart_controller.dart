@@ -51,9 +51,18 @@ class CartController extends GetxController {
       .toList();
 
   // Getting total price for all items.
-  get totalPrice => subTotalPrice.reduce((value, element) => value + element);
+  get totalPrice {
+    if (_storeItems.isEmpty) {
+      return 0;
+    }
+    return subTotalPrice.reduce((value, element) => value + element);
+  }
 
   // Getting amount of all items.
-  get totalItems =>
-      _storeItems.values.reduce((value, element) => value + element);
+  get totalItems {
+    if (_storeItems.isEmpty) {
+      return 0;
+    }
+    return _storeItems.values.reduce((value, element) => value + element);
+  }
 }

@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import '../../../utils/constants.dart';
 import '../../home_page/widgets/pickup_point.dart';
 import '../../main/widgets/text.dart';
-import '../../store_items/widgets/cart_total.dart';
+import '../widgets/cart_total.dart';
 import '../controllers/cart_controller.dart';
 import '../widgets/cart_item.dart';
 
@@ -109,7 +109,12 @@ class CartItems extends StatelessWidget {
         ),
       );
     } else {
-      return const Center(child: Text("Корзина пуста"));
+      return Container(
+          margin: const EdgeInsets.only(top: 200),
+          child: const Text(
+            "Корзина пуста",
+            style: TextStyle(fontSize: 20),
+          ));
     }
   }
 }
