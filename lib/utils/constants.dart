@@ -19,3 +19,15 @@ List<String> recommendationsUrl = <String>[
   "https://cdn1.ozone.ru/s3/cms/f0/tee/wc450/456x150x2-3.jpg",
   "https://cdn1.ozone.ru/s3/cms/ba/tfc/wc450/3_-_klimat_desk.jpg"
 ];
+
+Map<String, String> sections = {
+  "brands.png": "Бренды",
+  "business.png": "Бизнесс",
+  "cosmetics.png": "Красота и здоровье",
+  "electronics.png": "Электроника",
+  "fashion.png": "Одежра и обувь",
+  "house.png": "Для дома",
+  "premium.png": "Premium",
+  "sales.png": "Акции",
+  "travel.png": "Путешествия",
+};

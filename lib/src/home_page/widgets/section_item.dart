@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 
 import '../../../utils/constants.dart';
-import '../../main/widgets/text.dart';
 
 class SectionItem extends StatelessWidget {
   final String text;
   final String image;
 
-  final double size = 40;
+  final double size = 35;
 
   const SectionItem({Key? key, required this.image, required this.text})
       : super(key: key);
@@ -18,16 +17,17 @@ class SectionItem extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Image.asset(
-          image,
+          "assets/images/sections/$image",
           width: size,
           height: size,
         ),
-        SimpleText(
-          text: text,
-          color: AppColors.primaryColor,
-          size: 10,
-          isCenter: true,
-        )
+        const SizedBox(height: 5),
+        Text(text,
+            style: TextStyle(
+              color: AppColors.primaryColor,
+              fontSize: 10,
+            ),
+            textAlign: TextAlign.center)
       ],
     );
   }
