@@ -57,12 +57,12 @@ class HeaderListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-        // margin: const EdgeInsets.only(right: 10),
         decoration: BoxDecoration(boxShadow: [
           BoxShadow(
               color: AppColors.primaryColor.withOpacity(0.3),
-              spreadRadius: 1,
-              blurRadius: 3)
+              spreadRadius: 0.3,
+              blurRadius: 2,
+              offset: const Offset(0, 2))
         ], borderRadius: BorderRadius.circular(2), color: Colors.white),
         child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
