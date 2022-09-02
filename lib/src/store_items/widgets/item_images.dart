@@ -21,10 +21,12 @@ class ItemImages extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             controller: pageController,
             children: List.generate(images.length, (index) {
-              return Image.network(
-                images[index],
-                fit: BoxFit.fitHeight,
-              );
+              return Image.network(images[index], fit: BoxFit.fitHeight,
+                  errorBuilder: (context, error, stackTrace) {
+                return Padding(
+                    padding: const EdgeInsets.all(100),
+                    child: Image.asset("assets/images/network_error.png"));
+              });
             }),
           ),
         ),

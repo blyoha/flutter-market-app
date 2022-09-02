@@ -44,11 +44,11 @@ class CartItem extends StatelessWidget {
                       shape: const CircleBorder(),
                       value: isChecked,
                       onChanged: (bool? value) {}),
-                  Image.network(
-                    storeItem.images[0],
-                    width: 80,
-                    height: 80,
-                  )
+                  Image.network(storeItem.images[0], height: 80, width: 80, fit: BoxFit.fitHeight,
+                      errorBuilder: (context, error, stackTrace) {
+                    return Image.asset("assets/images/network_error.png",
+                        height: 80, width: 80, fit: BoxFit.fitHeight);
+                  })
                 ],
               ),
               // item info

@@ -33,15 +33,24 @@ class _StoreItemState extends State<StoreItem> {
           children: [
             // image
             Container(
-                margin: const EdgeInsets.only(bottom: 5),
-                width: width,
-                height: width,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: AppColors.backgroundColor,
-                    image: DecorationImage(
-                        image: NetworkImage(widget.storeItem.images[0]),
-                        fit: BoxFit.fitHeight))),
+              margin: const EdgeInsets.only(bottom: 5),
+              width: width,
+              height: width,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15),
+                  color: AppColors.backgroundColor,
+                  image: DecorationImage(
+                      image: NetworkImage(widget.storeItem.images[0]),
+                      fit: BoxFit.fitHeight)),
+              child: Center(
+                  child: Image.network(
+                widget.storeItem.images[0],
+                fit: BoxFit.fitHeight,
+                errorBuilder: (context, error, stackTrace) {
+                  return Image.asset("assets/images/network_error.png");
+                },
+              )),
+            ),
             // price
             Container(
               margin: const EdgeInsets.only(bottom: 5),
