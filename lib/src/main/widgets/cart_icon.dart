@@ -12,12 +12,30 @@ class CartIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(clipBehavior: Clip.none, children: [
-      selectedIndex == 1
-          ? Icon(Icons.shopping_bag_outlined,
-              size: 30, color: AppColors.focusColor)
-          : Icon(Icons.shopping_bag_outlined,
-              size: 30, color: AppColors.primaryColor.withOpacity(0.7)),
-    ]);
+    return GetX<CartController>(
+        builder: (controller) => Stack(clipBehavior: Clip.none, children: [
+              selectedIndex == 1
+                  ? Icon(Icons.shopping_bag_outlined,
+                      size: 30, color: AppColors.focusColor)
+                  : Icon(Icons.shopping_bag_outlined,
+                      size: 30, color: AppColors.primaryColor.withOpacity(0.7)),
+              if (controller.totalItems != 0)
+                Positioned(
+                    top: -2,
+                    right: -4,
+                    child: ConstrainedBox(
+                        constraints: const BoxConstraints(minWidth: 15),
+                        child: DecoratedBox(
+                            decoration: BoxDecoration(
+                                color: AppColors.focusColor2,
+                                borderRadius: BorderRadius.circular(15)),
+                            child: Container(
+                                alignment: Alignment.center,
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 3, vertical: 1),
+                                child: Text("${controller.totalItems}",
+                                    style: const TextStyle(
+                                        color: Colors.white, fontSize: 12))))))
+            ]));
   }
 }
