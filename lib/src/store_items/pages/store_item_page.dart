@@ -11,16 +11,22 @@ import '../widgets/item_info.dart';
 import '../widgets/item_types.dart';
 import '../widgets/top_bar.dart';
 
-class StoreItemPage extends StatelessWidget {
+class StoreItemPage extends StatefulWidget {
   final StoreItemModel storeItem;
-  final CartController controller = Get.find();
+  late int selectedPrice;
+  late int installment;
 
   StoreItemPage({Key? key, required this.storeItem}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    final int installment = (storeItem.price / 6).ceil();
+  State<StoreItemPage> createState() => _StoreItemPageState();
+}
 
+class _StoreItemPageState extends State<StoreItemPage> {
+  final CartController controller = Get.find();
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       body: SafeArea(
@@ -44,7 +50,7 @@ class StoreItemPage extends StatelessWidget {
                   children: [
                     // images
                     ItemImages(
-                      images: storeItem.images,
+                      images: widget.storeItem.images,
                     ),
                     const SizedBox(height: 15),
                     // rating, reviews
@@ -72,7 +78,7 @@ class StoreItemPage extends StatelessWidget {
                                 children: [
                                   Wrap(
                                     children: List.generate(5, (index) {
-                                      if (index < storeItem.rating) {
+                                      if (index < widget.storeItem.rating) {
                                         return Icon(Icons.star_rounded,
                                             color: AppColors.starColor);
                                       } else {
@@ -85,7 +91,8 @@ class StoreItemPage extends StatelessWidget {
                                 ],
                               ),
                               SimpleText(
-                                text: "${storeItem.reviews.length} отзывов",
+                                text:
+                                    "${widget.storeItem.reviews.length} отзывов",
                                 color: AppColors.focusColor,
                                 size: 14,
                               )
@@ -113,7 +120,7 @@ class StoreItemPage extends StatelessWidget {
                                   Container(
                                     margin: const EdgeInsets.only(top: 5),
                                     child: Header(
-                                      text: "${storeItem.price} руб",
+                                      text: "${widget.selectedPrice} руб",
                                       color: AppColors.primaryColor,
                                       size: 30,
                                     ),
@@ -126,7 +133,7 @@ class StoreItemPage extends StatelessWidget {
                                       color: const Color.fromRGBO(
                                           255, 225, 120, 1),
                                       child: SimpleText(
-                                        text: "$installment руб",
+                                        text: "${widget.installment} руб",
                                         color: AppColors.primaryColor,
                                         size: 18,
                                       ),
@@ -177,7 +184,7 @@ class StoreItemPage extends StatelessWidget {
                       margin: const EdgeInsets.symmetric(
                           horizontal: 20, vertical: 5),
                       child: Header(
-                        text: storeItem.name,
+                        text: widget.storeItem.name,
                         color: AppColors.primaryColor,
                         size: 15,
                       ),
@@ -197,14 +204,24 @@ class StoreItemPage extends StatelessWidget {
                     Container(
                       margin: const EdgeInsets.symmetric(
                           horizontal: 20, vertical: 10),
-                      child: ItemTypes(typeList: storeItem.types),
+                      child: ItemTypes(
+                          typeList: widget.storeItem.types,
+                          storeItem: widget.storeItem,
+                          typeSelected: (int index) {
+                            setState(() {
+                              widget.selectedPrice =
+                                  widget.storeItem.types.values.toList()[index];
+                              widget.installment =
+                                  (widget.selectedPrice / 6).ceil();
+                            });
+                          }),
                     ),
                     Container(
                       height: 10,
                       color: AppColors.secondaryColor.withOpacity(0.1),
                     ),
                     // description
-                    ItemInfo(storeItem: storeItem),
+                    ItemInfo(storeItem: widget.storeItem),
                     // bottom space
                     Container(
                         height: 220,
@@ -217,12 +234,20 @@ class StoreItemPage extends StatelessWidget {
             Positioned(
                 bottom: 0,
                 child: BottomBar(
-                  controller: controller,
-                  storeItem: storeItem,
-                )),
+                    controller: controller,
+                    storeItem: widget.storeItem,
+                    selectedPrice: widget.selectedPrice)),
           ],
         ),
       ),
     );
+  }
+
+  @override
+  void initState() {
+    widget.selectedPrice = widget.storeItem.price;
+    widget.installment = (widget.selectedPrice / 6).ceil();
+
+    super.initState();
   }
 }

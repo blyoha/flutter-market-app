@@ -1,18 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../utils/constants.dart';
+import '../../home_page/controllers/store_item_controller.dart';
 import '../../main/widgets/text.dart';
+import '../../shopping_cart/models/store_item_model.dart';
 
 class ItemTypes extends StatefulWidget {
   final Map<String, dynamic> typeList;
+  final StoreItemModel storeItem;
+  final dynamic typeSelected;
 
-  const ItemTypes({Key? key, required this.typeList}) : super(key: key);
+  const ItemTypes(
+      {Key? key,
+      required this.typeList,
+      required this.storeItem,
+      required this.typeSelected})
+      : super(key: key);
 
   @override
   State<ItemTypes> createState() => _ItemTypesState();
 }
 
 class _ItemTypesState extends State<ItemTypes> {
+  final StoreItemController controller = Get.find();
   int selectedIndex = 0;
 
   @override
@@ -36,11 +47,13 @@ class _ItemTypesState extends State<ItemTypes> {
               margin: const EdgeInsets.only(right: 10),
               padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
               child: SimpleText(
-                  text: widget.typeList.keys.toList()[index], color: AppColors.primaryColor),
+                  text: widget.typeList.keys.toList()[index],
+                  color: AppColors.primaryColor),
             ),
             onTap: () {
               setState(() {
                 selectedIndex = index;
+                widget.typeSelected(selectedIndex);
               });
             },
           );

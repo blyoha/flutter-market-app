@@ -11,8 +11,13 @@ class BottomBar extends StatefulWidget {
   // TODO: Fix activated button when go back.
   final CartController controller;
   final StoreItemModel storeItem;
+  final int selectedPrice;
 
-  const BottomBar({Key? key, required this.controller, required this.storeItem})
+  const BottomBar(
+      {Key? key,
+      required this.controller,
+      required this.storeItem,
+      required this.selectedPrice})
       : super(key: key);
 
   @override
@@ -26,11 +31,10 @@ class _BottomBarState extends State<BottomBar> {
 
     return Container(
       decoration: BoxDecoration(
-        border: Border(
-            top: BorderSide(
-                color: AppColors.primaryColor.withOpacity(0.3), width: 0.5)),
-        color: AppColors.backgroundColor,
-      ),
+          border: Border(
+              top: BorderSide(
+                  color: AppColors.primaryColor.withOpacity(0.3), width: 0.5)),
+          color: AppColors.backgroundColor),
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       height: 100,
       width: MediaQuery.of(context).size.width,
@@ -38,7 +42,7 @@ class _BottomBarState extends State<BottomBar> {
         children: [
           // price
           SimpleText(
-            text: "${widget.storeItem.price} руб",
+            text: "${widget.selectedPrice} руб",
             color: AppColors.primaryColor,
             size: 18,
           ),
