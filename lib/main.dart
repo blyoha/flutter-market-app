@@ -2,9 +2,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:ozon_app/utils/constants.dart';
 
 import 'src/main/pages/main_page.dart';
+import 'utils/constants.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -40,6 +40,9 @@ class MyApp extends StatelessWidget {
                   TextStyle(color: AppColors.primaryColor, fontSize: 15)),
           primarySwatch: Colors.indigo,
           backgroundColor: AppColors.backgroundColor,
+          highlightColor: AppColors.primaryColor,
+          hoverColor: Colors.transparent,
+          splashColor: Colors.transparent,
           fontFamily: 'GT Eesti Pro Display'),
       home: const MainPage(),
     );
