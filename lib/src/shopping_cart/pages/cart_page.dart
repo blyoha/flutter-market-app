@@ -90,7 +90,7 @@ class CartPage extends StatelessWidget {
 }
 
 class CartItems extends StatelessWidget {
-  final CartController controller = Get.find();
+  final CartController controller = Get.put(CartController());
 
   CartItems({Key? key}) : super(key: key);
 
