@@ -18,7 +18,7 @@ class _MainPageState extends State<MainPage> {
 
   final pages = <Widget>[
     const HomePage(),
-    const CartPage(),
+    CartPage(),
     const ProfilePage(),
   ];
 

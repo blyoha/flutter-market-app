@@ -9,7 +9,9 @@ import '../controllers/cart_controller.dart';
 import '../widgets/cart_item.dart';
 
 class CartPage extends StatefulWidget {
-  const CartPage({Key? key}) : super(key: key);
+  final CartController controller = Get.put(CartController());
+
+  CartPage({Key? key}) : super(key: key);
 
   @override
   State<CartPage> createState() => _CartPageState();
@@ -59,10 +61,34 @@ class _CartPageState extends State<CartPage> {
                         const Expanded(
                             child: Text("Выбрать все",
                                 style: TextStyle(fontSize: 13))),
-                        Text(
-                          "Удалить выбранные",
-                          style: TextStyle(
-                              color: AppColors.focusColor2, fontSize: 13),
+                        GestureDetector(
+                          onTap: () {
+                            showDialog(
+                                context: context,
+                                builder: (context) => AlertDialog(
+                                        content: const Text(
+                                            "Вы точно хотите удалить выбранные товары? Отменить данное действие будет невозможно."),
+                                        actions: [
+                                          TextButton(
+                                              onPressed: () {
+                                                Get.back();
+                                              },
+                                              child: const Text("Отмена")),
+                                          TextButton(
+                                              onPressed: () {
+                                                widget.controller
+                                                    .removeSelected();
+                                                Get.back();
+                                              },
+                                              child:
+                                                  const Text("Удалить товар"))
+                                        ]));
+                          },
+                          child: Text(
+                            "Удалить выбранные",
+                            style: TextStyle(
+                                color: AppColors.focusColor2, fontSize: 13),
+                          ),
                         )
                       ],
                     ),

@@ -63,7 +63,7 @@ class _BottomBarState extends State<BottomBar> {
                   onPressed: () {
                     setState(() {
                       if (isInCart) {
-                        Get.to(const CartPage());
+                        Get.to(CartPage());
                       } else {
                         widget.controller.addStoreItem(widget.storeItem);
                       }
