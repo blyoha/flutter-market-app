@@ -11,6 +11,7 @@ import '../widgets/item_info.dart';
 import '../widgets/item_types.dart';
 import '../widgets/top_bar.dart';
 
+// ignore: must_be_immutable
 class StoreItemPage extends StatefulWidget {
   final StoreItemModel storeItem;
   late int selectedPrice;

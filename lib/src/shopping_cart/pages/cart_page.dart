@@ -128,8 +128,7 @@ class _CartItemsState extends State<CartItems> {
   @override
   Widget build(BuildContext context) {
     if (controller.totalItems != 0) {
-      return Obx(
-        () => Column(
+      return Obx(() => Column(
           children: List.generate(
               controller.storeItems.length,
               (index) => CartItem(
@@ -137,16 +136,11 @@ class _CartItemsState extends State<CartItems> {
                   storeItem: controller.storeItems.keys.toList()[index],
                   quantity: controller.storeItems.values.toList()[index],
                   index: index,
-                  notifyParent: widget.notifyParent)),
-        ),
-      );
+                  notifyParent: widget.notifyParent))));
     } else {
       return Container(
           margin: const EdgeInsets.only(top: 200),
-          child: const Text(
-            "Корзина пуста",
-            style: TextStyle(fontSize: 20),
-          ));
+          child: const Text("Корзина пуста", style: TextStyle(fontSize: 20)));
     }
   }
 }
