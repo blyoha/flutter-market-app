@@ -4,8 +4,6 @@ import 'package:get/get.dart';
 import '../../shopping_cart/models/store_item_model.dart';
 
 class CartController extends GetxController {
-  // TODO: Fix dat fucking zero items bug!!
-
   // Dictionary to store the store items
   final _storeItems = {}.obs;
 
@@ -72,5 +70,13 @@ class CartController extends GetxController {
     _storeItems.forEach((k, v) {
       k.isChecked = value;
     });
+  }
+
+  void removeSelected() {
+    for (var item in _storeItems.keys.toList()) {
+      if (item.isChecked) {
+        removeStoreItem(item);
+      }
+    }
   }
 }
