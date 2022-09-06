@@ -12,12 +12,15 @@ class CartItem extends StatefulWidget {
   final int quantity;
   final int index;
 
+  final Function notifyParent;
+
   const CartItem(
       {Key? key,
       required this.controller,
       required this.storeItem,
       required this.quantity,
-      required this.index})
+      required this.index,
+      required this.notifyParent})
       : super(key: key);
 
   @override
@@ -48,6 +51,7 @@ class _CartItemState extends State<CartItem> {
                       shape: const CircleBorder(),
                       value: widget.storeItem.isChecked,
                       onChanged: (value) {
+                        widget.notifyParent();
                         setState(() {
                           widget.storeItem.isChecked = value!;
                         });

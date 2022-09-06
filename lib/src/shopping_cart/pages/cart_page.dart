@@ -8,9 +8,14 @@ import '../widgets/cart_total.dart';
 import '../controllers/cart_controller.dart';
 import '../widgets/cart_item.dart';
 
-class CartPage extends StatelessWidget {
+class CartPage extends StatefulWidget {
   const CartPage({Key? key}) : super(key: key);
 
+  @override
+  State<CartPage> createState() => _CartPageState();
+}
+
+class _CartPageState extends State<CartPage> {
   @override
   Widget build(BuildContext context) {
     const String pickupPoint = "ул. Бабушкина, 223";
@@ -50,7 +55,7 @@ class CartPage extends StatelessWidget {
                     padding: const EdgeInsets.only(right: 15),
                     child: Row(
                       children: [
-                        SelectAll(),
+                        CheckAll(notifyParent: refresh),
                         const Expanded(
                             child: Text("Выбрать все",
                                 style: TextStyle(fontSize: 13))),
@@ -62,7 +67,7 @@ class CartPage extends StatelessWidget {
                       ],
                     ),
                   ),
-                  CartItems(),
+                  CartItems(notifyParent: refresh),
                 ],
               ),
             ),
@@ -76,12 +81,23 @@ class CartPage extends StatelessWidget {
       )),
     );
   }
+
+  refresh() {
+    setState(() {});
+  }
 }
 
-class CartItems extends StatelessWidget {
-  final CartController controller = Get.put(CartController());
+class CartItems extends StatefulWidget {
+  final Function() notifyParent;
 
-  CartItems({Key? key}) : super(key: key);
+  CartItems({Key? key, required this.notifyParent}) : super(key: key);
+
+  @override
+  State<CartItems> createState() => _CartItemsState();
+}
+
+class _CartItemsState extends State<CartItems> {
+  final CartController controller = Get.put(CartController());
 
   @override
   Widget build(BuildContext context) {
@@ -94,7 +110,8 @@ class CartItems extends StatelessWidget {
                   controller: controller,
                   storeItem: controller.storeItems.keys.toList()[index],
                   quantity: controller.storeItems.values.toList()[index],
-                  index: index)),
+                  index: index,
+                  notifyParent: widget.notifyParent)),
         ),
       );
     } else {
@@ -108,30 +125,30 @@ class CartItems extends StatelessWidget {
   }
 }
 
-class SelectAll extends StatefulWidget {
-  const SelectAll({Key? key}) : super(key: key);
+class CheckAll extends StatefulWidget {
+  final Function notifyParent;
+
+  const CheckAll({Key? key, required this.notifyParent}) : super(key: key);
 
   @override
-  State<SelectAll> createState() => _SelectAllState();
+  State<CheckAll> createState() => _CheckAllState();
 }
 
-class _SelectAllState extends State<SelectAll> {
-  final CartController controller = Get.find();
-  bool allChecked = false;
-
+class _CheckAllState extends State<CheckAll> {
   @override
   Widget build(BuildContext context) {
-    return Checkbox(
-      side:
-          BorderSide(color: AppColors.primaryColor.withOpacity(0.1), width: 2),
-      activeColor: AppColors.focusColor,
-      splashRadius: 0,
-      shape: const CircleBorder(),
-      value: controller.allChecked,
-      onChanged: (value) {
-        controller.checkAll(value!);
-        setState(() {});
-      },
-    );
+    return GetX<CartController>(
+        builder: (controller) => Checkbox(
+            side: BorderSide(
+                color: AppColors.primaryColor.withOpacity(0.1), width: 2),
+            activeColor: AppColors.focusColor,
+            splashRadius: 0,
+            shape: const CircleBorder(),
+            value: controller.allChecked,
+            onChanged: (value) {
+              controller.checkAll(value!);
+              widget.notifyParent();
+              setState(() {});
+            }));
   }
 }
