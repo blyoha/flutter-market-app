@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../shopping_cart/models/store_item_model.dart';
@@ -14,11 +13,6 @@ class CartController extends GetxController {
     } else {
       _storeItems[storeItem] = 1;
     }
-
-    Get.snackbar("Added to cart", "You've added the ${storeItem.name}",
-        snackPosition: SnackPosition.BOTTOM,
-        duration: const Duration(seconds: 1),
-        margin: const EdgeInsets.only(bottom: 30));
   }
 
   // Logic of decreasing a store item from the cart
@@ -28,11 +22,6 @@ class CartController extends GetxController {
     } else {
       storeItems[storeItem]--;
     }
-
-    Get.snackbar("Removed from cart", "You've removed the ${storeItem.name}",
-        snackPosition: SnackPosition.BOTTOM,
-        duration: const Duration(seconds: 1),
-        margin: const EdgeInsets.only(bottom: 30));
   }
 
   // Logic of removing a store item from the cart
