@@ -65,4 +65,12 @@ class CartController extends GetxController {
     }
     return _storeItems.values.reduce((value, element) => value + element);
   }
+
+  get allChecked => _storeItems.keys.toList().every((item) => item.isChecked);
+
+  void checkAll(bool value) {
+    _storeItems.forEach((k, v) {
+      k.isChecked = value;
+    });
+  }
 }

@@ -6,7 +6,7 @@ import '../../main/widgets/text.dart';
 import '../controllers/cart_controller.dart';
 import '../models/store_item_model.dart';
 
-class CartItem extends StatelessWidget {
+class CartItem extends StatefulWidget {
   final CartController controller;
   final StoreItemModel storeItem;
   final int quantity;
@@ -21,9 +21,12 @@ class CartItem extends StatelessWidget {
       : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    bool isChecked = true;
+  State<CartItem> createState() => _CartItemState();
+}
 
+class _CartItemState extends State<CartItem> {
+  @override
+  Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 15),
       child: Column(
@@ -41,10 +44,16 @@ class CartItem extends StatelessWidget {
                           color: AppColors.primaryColor.withOpacity(0.1),
                           width: 2),
                       activeColor: AppColors.focusColor,
+                      splashRadius: 0,
                       shape: const CircleBorder(),
-                      value: isChecked,
-                      onChanged: (bool? value) {}),
-                  Image.network(storeItem.images[0], height: 80, width: 80, fit: BoxFit.fitHeight,
+                      value: widget.storeItem.isChecked,
+                      onChanged: (value) {
+                        setState(() {
+                          widget.storeItem.isChecked = value!;
+                        });
+                      }),
+                  Image.network(widget.storeItem.images[0],
+                      height: 80, width: 80, fit: BoxFit.fitHeight,
                       errorBuilder: (context, error, stackTrace) {
                     return Image.asset("assets/images/network_error.png",
                         height: 80, width: 80, fit: BoxFit.fitHeight);
@@ -59,7 +68,8 @@ class CartItem extends StatelessWidget {
                   children: [
                     // price
                     Header(
-                      text: "${controller.subTotalPrice[index]} руб",
+                      text:
+                          "${widget.controller.subTotalPrice[widget.index]} руб",
                       color: AppColors.primaryColor,
                       size: 15,
                     ),
@@ -69,7 +79,7 @@ class CartItem extends StatelessWidget {
                       width: 210,
                       child: Flexible(
                         child: Text(
-                          storeItem.name,
+                          widget.storeItem.name,
                           maxLines: 3,
                           overflow: TextOverflow.ellipsis,
                         ),
@@ -93,7 +103,8 @@ class CartItem extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 5),
                 child: SimpleText(
-                    text: "Частями по ${(storeItem.price / 6).ceil()} / мес",
+                    text:
+                        "Частями по ${(widget.storeItem.price / 6).ceil()} / мес",
                     color: AppColors.primaryColor,
                     size: 12),
               ),
@@ -135,7 +146,8 @@ class CartItem extends StatelessWidget {
                                         child: const Text("Отмена")),
                                     TextButton(
                                         onPressed: () {
-                                          controller.removeStoreItem(storeItem);
+                                          widget.controller.removeStoreItem(
+                                              widget.storeItem);
                                           Get.back();
                                         },
                                         child: const Text("Удалить товар"))
@@ -164,13 +176,13 @@ class CartItem extends StatelessWidget {
                     showModalBottomSheet(
                         context: context,
                         builder: (context) => AmountSelection(
-                            controller: controller,
-                            storeItem: storeItem,
-                            quantity: quantity - 1));
+                            controller: widget.controller,
+                            storeItem: widget.storeItem,
+                            quantity: widget.quantity - 1));
                   },
                   child: Row(
                     children: [
-                      Text("$quantity шт."),
+                      Text("${widget.quantity} шт."),
                       Column(
                         children: const [
                           Icon(Icons.keyboard_arrow_up_rounded, size: 20),

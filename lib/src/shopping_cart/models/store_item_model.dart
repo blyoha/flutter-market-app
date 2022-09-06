@@ -10,7 +10,9 @@ class StoreItemModel {
   final List reviews;
   final Map<String, dynamic> types;
 
-  const StoreItemModel(
+  late bool isChecked = true;
+
+  StoreItemModel(
       {required this.images,
       required this.name,
       required this.price,

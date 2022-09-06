@@ -13,7 +13,6 @@ class CartPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool allChecked = true;
     const String pickupPoint = "ул. Бабушкина, 223";
 
     return Scaffold(
@@ -46,22 +45,12 @@ class CartPage extends StatelessWidget {
                   const PickupPoint(
                     location: pickupPoint,
                   ),
-                  // choose all
+                  // select all
                   Container(
                     padding: const EdgeInsets.only(right: 15),
                     child: Row(
                       children: [
-                        Checkbox(
-                          side: BorderSide(
-                              color: AppColors.primaryColor.withOpacity(0.1),
-                              width: 2),
-                          activeColor: AppColors.focusColor,
-                          shape: const CircleBorder(),
-                          value: allChecked,
-                          onChanged: (value) {
-                            allChecked = value!;
-                          },
-                        ),
+                        SelectAll(),
                         const Expanded(
                             child: Text("Выбрать все",
                                 style: TextStyle(fontSize: 13))),
@@ -116,5 +105,33 @@ class CartItems extends StatelessWidget {
             style: TextStyle(fontSize: 20),
           ));
     }
+  }
+}
+
+class SelectAll extends StatefulWidget {
+  const SelectAll({Key? key}) : super(key: key);
+
+  @override
+  State<SelectAll> createState() => _SelectAllState();
+}
+
+class _SelectAllState extends State<SelectAll> {
+  final CartController controller = Get.find();
+  bool allChecked = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Checkbox(
+      side:
+          BorderSide(color: AppColors.primaryColor.withOpacity(0.1), width: 2),
+      activeColor: AppColors.focusColor,
+      splashRadius: 0,
+      shape: const CircleBorder(),
+      value: controller.allChecked,
+      onChanged: (value) {
+        controller.checkAll(value!);
+        setState(() {});
+      },
+    );
   }
 }
