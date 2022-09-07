@@ -69,7 +69,7 @@ class _CartItemState extends State<CartItem> {
                 ]),
                 // item info
                 Container(
-                    margin: const EdgeInsets.only(left: 20),
+                    padding: const EdgeInsets.only(left: 10, right: 20),
                     child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -83,13 +83,12 @@ class _CartItemState extends State<CartItem> {
                           const SizedBox(height: 5),
                           // name
                           SizedBox(
-                              width: 210,
-                              child: Flexible(
-                                  child: Text(
+                              width: 200,
+                              child: Text(
                                 widget.storeItem.name,
                                 maxLines: 3,
                                 overflow: TextOverflow.ellipsis,
-                              )))
+                              ))
                         ]))
               ]),
           const SizedBox(height: 20),
