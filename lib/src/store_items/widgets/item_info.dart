@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../../utils/constants.dart';
-import '../../main/widgets/text.dart';
 import '../../shopping_cart/models/store_item_model.dart';
 
 class ItemInfo extends StatefulWidget {
@@ -35,22 +34,23 @@ class _ItemInfoState extends State<ItemInfo>
       children: [
         // tabs
         TabBar(
-          indicatorColor: AppColors.focusColor,
-          indicatorSize: TabBarIndicatorSize.label,
-          controller: tabController,
-          tabs: [
-            Tab(
-              child: Header(
-                  text: "ОПИСАНИЕ", color: AppColors.primaryColor, size: 13),
-            ),
-            Tab(
-              child: Header(
-                  text: "ХАРАКТЕРИСТИКИ",
-                  color: AppColors.primaryColor,
-                  size: 13),
-            )
-          ],
-        ),
+            indicatorColor: AppColors.focusColor,
+            indicatorSize: TabBarIndicatorSize.label,
+            controller: tabController,
+            tabs: [
+              Tab(
+                  child: Text("ОПИСАНИЕ",
+                      style: TextStyle(
+                          color: AppColors.primaryColor,
+                          fontSize: 13,
+                          fontWeight: FontWeight.bold))),
+              Tab(
+                  child: Text("ХАРАКТЕРИСТИКИ",
+                      style: TextStyle(
+                          color: AppColors.primaryColor,
+                          fontSize: 13,
+                          fontWeight: FontWeight.bold)))
+            ]),
         // content
         SizedBox(
           height: 300,
@@ -84,27 +84,22 @@ class Specs extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
-      child: Column(
-          children: List.generate(
-        storeItem.specs.length,
-        (index) => Padding(
-          padding: const EdgeInsets.all(5),
-          child: Row(
-            children: [
-              Text(storeItem.specs.keys.toList()[index]),
-              Expanded(
-                  child: Text("." * 100,
-                      style: TextStyle(
-                          color: AppColors.primaryColor.withOpacity(0.3)),
-                      maxLines: 1)),
-              SimpleText(
-                  text: storeItem.specs.values.toList()[index],
-                  color: AppColors.primaryColor)
-            ],
-          ),
-        ),
-      )),
-    );
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+        child: Column(
+            children: List.generate(
+                storeItem.specs.length,
+                (index) => Padding(
+                    padding: const EdgeInsets.all(5),
+                    child: Row(children: [
+                      Text(storeItem.specs.keys.toList()[index]),
+                      Expanded(
+                          child: Text("." * 100,
+                              style: TextStyle(
+                                  color:
+                                      AppColors.primaryColor.withOpacity(0.3)),
+                              maxLines: 1)),
+                      Text(storeItem.specs.values.toList()[index],
+                          style: TextStyle(color: AppColors.primaryColor))
+                    ])))));
   }
 }

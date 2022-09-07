@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../utils/constants.dart';
-import '../../main/widgets/text.dart';
 import '../controllers/cart_controller.dart';
 import '../models/store_item_model.dart';
 
@@ -74,12 +73,12 @@ class _CartItemState extends State<CartItem> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           // price
-                          Header(
-                            text:
-                                "${widget.controller.subTotalPrice[widget.index]} руб",
-                            color: AppColors.primaryColor,
-                            size: 15,
-                          ),
+                          Text(
+                              "${widget.controller.subTotalPrice[widget.index]} руб",
+                              style: TextStyle(
+                                  color: AppColors.primaryColor,
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.bold)),
                           const SizedBox(height: 5),
                           // name
                           SizedBox(
@@ -103,10 +102,11 @@ class _CartItemState extends State<CartItem> {
                       color: const Color.fromRGBO(254, 204, 50, 1)),
                   child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 5),
-                      child: SimpleText(
-                          text: "Частями по $installment / мес",
-                          color: AppColors.primaryColor,
-                          size: 12)))),
+                      child: Text("Частями по $installment / мес",
+                          style: TextStyle(
+                              color: AppColors.primaryColor,
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold))))),
           Divider(
               thickness: 1, color: AppColors.secondaryColor.withOpacity(0.3)),
           // buttons bar

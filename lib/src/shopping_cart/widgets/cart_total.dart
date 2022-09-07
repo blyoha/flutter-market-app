@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../utils/constants.dart';
-import '../../main/widgets/text.dart';
 import '../controllers/cart_controller.dart';
 
 class CartTotal extends StatelessWidget {
@@ -65,10 +64,10 @@ class TotalButton extends StatelessWidget {
                 backgroundColor:
                     MaterialStateProperty.all<Color>(AppColors.focusColor)),
             onPressed: () {},
-            child: const Header(
-              text: "Перейти к оформлению",
-              color: Colors.white,
-              size: 12,
-            )));
+            child: const Text("Перейти к оформлению",
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 12,
+                    fontWeight: FontWeight.bold))));
   }
 }

@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 
 import '../../../utils/constants.dart';
 import '../../home_page/controllers/store_item_controller.dart';
-import '../../main/widgets/text.dart';
 import '../../shopping_cart/models/store_item_model.dart';
 
 class ItemTypes extends StatefulWidget {
@@ -36,20 +35,19 @@ class _ItemTypesState extends State<ItemTypes> {
         itemBuilder: (context, index) {
           return GestureDetector(
             child: Container(
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(
-                      width: 2,
-                      color: selectedIndex == index
-                          ? AppColors.focusColor
-                          : AppColors.primaryColor.withOpacity(0.1))),
-              margin: const EdgeInsets.only(right: 10),
-              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-              child: SimpleText(
-                  text: widget.typeList.keys.toList()[index],
-                  color: AppColors.primaryColor),
-            ),
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(
+                        width: 2,
+                        color: selectedIndex == index
+                            ? AppColors.focusColor
+                            : AppColors.primaryColor.withOpacity(0.1))),
+                margin: const EdgeInsets.only(right: 10),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+                child: Text(widget.typeList.keys.toList()[index],
+                    style: TextStyle(color: AppColors.primaryColor))),
             onTap: () {
               setState(() {
                 selectedIndex = index;

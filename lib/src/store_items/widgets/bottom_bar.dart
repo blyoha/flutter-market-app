@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../utils/constants.dart';
-import '../../main/widgets/text.dart';
 import '../../shopping_cart/controllers/cart_controller.dart';
 import '../../shopping_cart/models/store_item_model.dart';
 import '../../shopping_cart/pages/cart_page.dart';
@@ -30,22 +29,19 @@ class _BottomBarState extends State<BottomBar> {
     bool isInCart = widget.controller.storeItems.containsKey(widget.storeItem);
 
     return Container(
-      decoration: BoxDecoration(
-          border: Border(
-              top: BorderSide(
-                  color: AppColors.primaryColor.withOpacity(0.3), width: 0.5)),
-          color: AppColors.backgroundColor),
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-      height: 100,
-      width: MediaQuery.of(context).size.width,
-      child: Column(
-        children: [
+        decoration: BoxDecoration(
+            border: Border(
+                top: BorderSide(
+                    color: AppColors.primaryColor.withOpacity(0.3),
+                    width: 0.5)),
+            color: AppColors.backgroundColor),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        height: 100,
+        width: MediaQuery.of(context).size.width,
+        child: Column(children: [
           // price
-          SimpleText(
-            text: "${widget.selectedPrice} руб",
-            color: AppColors.primaryColor,
-            size: 18,
-          ),
+          Text("${widget.selectedPrice} руб",
+              style: TextStyle(color: AppColors.primaryColor, fontSize: 18)),
           const SizedBox(
             height: 5,
           ),
@@ -69,12 +65,8 @@ class _BottomBarState extends State<BottomBar> {
                       }
                     });
                   },
-                  child: SimpleText(
-                    text: isInCart ? "К корзине" : "В корзину",
-                    color: Colors.white,
-                  )))
-        ],
-      ),
-    );
+                  child: Text(isInCart ? "К корзине" : "В корзину",
+                      style: const TextStyle(color: Colors.white))))
+        ]));
   }
 }

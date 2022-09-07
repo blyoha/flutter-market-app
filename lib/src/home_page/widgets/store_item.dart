@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../utils/constants.dart';
-import '../../main/widgets/text.dart';
 import '../../shopping_cart/controllers/cart_controller.dart';
 import '../../shopping_cart/models/store_item_model.dart';
 import '../../store_items/pages/store_item_page.dart';
@@ -56,19 +55,18 @@ class _StoreItemState extends State<StoreItem> {
               margin: const EdgeInsets.only(bottom: 5),
               padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 3),
               decoration: BoxDecoration(color: AppColors.priceColor),
-              child: Header(
-                  text: "${widget.storeItem.price} руб",
-                  color: Colors.white,
-                  size: 15),
+              child: Text("${widget.storeItem.price} руб",
+                  style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold)),
             ),
             // name
             Container(
                 margin: const EdgeInsets.only(bottom: 8),
-                child: SimpleText(
-                  text: widget.storeItem.name,
-                  color: AppColors.primaryColor,
-                  size: 14,
-                )),
+                child: Text(widget.storeItem.name,
+                    style: TextStyle(
+                        color: AppColors.primaryColor, fontSize: 14))),
             // cart button
             if (itemsInCart == 0)
               SizedBox(
@@ -84,11 +82,11 @@ class _StoreItemState extends State<StoreItem> {
                       onPressed: () {
                         onAddPressed();
                       },
-                      child: const Header(
-                        text: "В корзину",
-                        color: Colors.white,
-                        size: 12,
-                      )))
+                      child: const Text("В корзину",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold))))
             else
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -107,11 +105,11 @@ class _StoreItemState extends State<StoreItem> {
                             Icons.remove_rounded,
                             color: AppColors.focusColor.withOpacity(0.7),
                           ))),
-                  SimpleText(
-                    text: "$itemsInCart шт",
-                    color: AppColors.primaryColor,
-                    size: 10,
-                  ),
+                  Text("$itemsInCart шт",
+                      style: TextStyle(
+                          color: AppColors.primaryColor,
+                          fontSize: 10,
+                          fontWeight: FontWeight.bold)),
                   Container(
                       width: 25,
                       height: 25,

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../utils/constants.dart';
-import '../../main/widgets/text.dart';
 import '../../shopping_cart/controllers/cart_controller.dart';
 import '../../shopping_cart/models/store_item_model.dart';
 import '../widgets/bottom_bar.dart';
@@ -56,52 +55,49 @@ class _StoreItemPageState extends State<StoreItemPage> {
                     const SizedBox(height: 15),
                     // rating, reviews
                     Container(
-                      margin: const EdgeInsets.only(
-                          left: 20, right: 20, bottom: 20),
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 10, vertical: 5),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(5),
-                          color: AppColors.backgroundColor,
-                          boxShadow: const [
-                            BoxShadow(color: Colors.black38, blurRadius: 8)
-                          ]),
-                      width: 140,
-                      height: 55,
-                      child: ListView(
-                        scrollDirection: Axis.horizontal,
-                        children: [
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                        margin: const EdgeInsets.only(
+                            left: 20, right: 20, bottom: 20),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 10, vertical: 5),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(5),
+                            color: AppColors.backgroundColor,
+                            boxShadow: const [
+                              BoxShadow(color: Colors.black38, blurRadius: 8)
+                            ]),
+                        width: 140,
+                        height: 55,
+                        child: ListView(
+                            scrollDirection: Axis.horizontal,
                             children: [
-                              Row(
-                                children: [
-                                  Wrap(
-                                    children: List.generate(5, (index) {
-                                      if (index < widget.storeItem.rating) {
-                                        return Icon(Icons.star_rounded,
-                                            color: AppColors.starColor);
-                                      } else {
-                                        return Icon(Icons.star_rounded,
-                                            color: AppColors.primaryColor
-                                                .withOpacity(0.3));
-                                      }
-                                    }),
-                                  )
-                                ],
-                              ),
-                              SimpleText(
-                                text:
-                                    "${widget.storeItem.reviews.length} отзывов",
-                                color: AppColors.focusColor,
-                                size: 14,
-                              )
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
+                              Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Wrap(
+                                          children: List.generate(5, (index) {
+                                            if (index <
+                                                widget.storeItem.rating) {
+                                              return Icon(Icons.star_rounded,
+                                                  color: AppColors.starColor);
+                                            } else {
+                                              return Icon(Icons.star_rounded,
+                                                  color: AppColors.primaryColor
+                                                      .withOpacity(0.3));
+                                            }
+                                          }),
+                                        )
+                                      ],
+                                    ),
+                                    Text(
+                                        "${widget.storeItem.reviews.length} отзывов",
+                                        style: TextStyle(
+                                            color: AppColors.focusColor,
+                                            fontSize: 14))
+                                  ])
+                            ])),
                     Container(
                       height: 10,
                       color: AppColors.secondaryColor.withOpacity(0.1),
@@ -119,32 +115,29 @@ class _StoreItemPageState extends State<StoreItemPage> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Container(
-                                    margin: const EdgeInsets.only(top: 5),
-                                    child: Header(
-                                      text: "${widget.selectedPrice} руб",
-                                      color: AppColors.primaryColor,
-                                      size: 30,
-                                    ),
-                                  ),
+                                      margin: const EdgeInsets.only(top: 5),
+                                      child: Text("${widget.selectedPrice} руб",
+                                          style: TextStyle(
+                                              color: AppColors.primaryColor,
+                                              fontSize: 30,
+                                              fontWeight: FontWeight.bold))),
                                   Row(children: [
                                     Container(
-                                      alignment: Alignment.center,
-                                      padding: const EdgeInsets.symmetric(
-                                          vertical: 2, horizontal: 3),
-                                      color: const Color.fromRGBO(
-                                          255, 225, 120, 1),
-                                      child: SimpleText(
-                                        text: "${widget.installment} руб",
-                                        color: AppColors.primaryColor,
-                                        size: 18,
-                                      ),
-                                    ),
-                                    SimpleText(
-                                      text: " \u00d7 6 мес",
-                                      color: AppColors.secondaryColor,
-                                      size: 14,
-                                    ),
-                                  ]),
+                                        alignment: Alignment.center,
+                                        padding: const EdgeInsets.symmetric(
+                                            vertical: 2, horizontal: 3),
+                                        color: const Color.fromRGBO(
+                                            255, 225, 120, 1),
+                                        child: Text("${widget.installment} руб",
+                                            style: TextStyle(
+                                                color: AppColors.primaryColor,
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.bold))),
+                                    Text(" \u00d7 6 мес",
+                                        style: TextStyle(
+                                            color: AppColors.secondaryColor,
+                                            fontSize: 15))
+                                  ])
                                 ],
                               ),
                               Expanded(child: Container()),
@@ -162,12 +155,10 @@ class _StoreItemPageState extends State<StoreItemPage> {
                                   color: AppColors.focusColor,
                                 ),
                                 Expanded(
-                                  child: SimpleText(
-                                    text: "Хочу скидку!",
-                                    color: AppColors.primaryColor,
-                                    size: 14,
-                                  ),
-                                ),
+                                    child: Text("Хочу скидку!",
+                                        style: TextStyle(
+                                            color: AppColors.primaryColor,
+                                            fontSize: 14))),
                                 Icon(Icons.arrow_forward_ios,
                                     size: 15, color: AppColors.secondaryColor),
                               ],
@@ -182,26 +173,22 @@ class _StoreItemPageState extends State<StoreItemPage> {
                     ),
                     // name
                     Container(
-                      margin: const EdgeInsets.symmetric(
-                          horizontal: 20, vertical: 5),
-                      child: Header(
-                        text: widget.storeItem.name,
-                        color: AppColors.primaryColor,
-                        size: 15,
-                      ),
-                    ),
+                        margin: const EdgeInsets.symmetric(
+                            horizontal: 20, vertical: 5),
+                        child: Text(widget.storeItem.name,
+                            style: TextStyle(
+                                color: AppColors.primaryColor,
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold))),
                     const SizedBox(
                       height: 15,
                     ),
                     // types
                     Container(
-                      margin: const EdgeInsets.symmetric(horizontal: 20),
-                      child: SimpleText(
-                        text: "Тип товара",
-                        color: AppColors.primaryColor,
-                        size: 15,
-                      ),
-                    ),
+                        margin: const EdgeInsets.symmetric(horizontal: 20),
+                        child: Text("Тип товара",
+                            style: TextStyle(
+                                color: AppColors.primaryColor, fontSize: 15))),
                     Container(
                       margin: const EdgeInsets.symmetric(
                           horizontal: 20, vertical: 10),

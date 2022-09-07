@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 
 import '../../../utils/constants.dart';
 import '../../home_page/widgets/pickup_point.dart';
-import '../../main/widgets/text.dart';
 import '../widgets/cart_total.dart';
 import '../controllers/cart_controller.dart';
 import '../widgets/cart_item.dart';
@@ -34,11 +33,11 @@ class _CartPageState extends State<CartPage> {
             width: MediaQuery.of(context).size.width,
             height: 50,
             color: AppColors.backgroundColor,
-            child: Header(
-              text: "Корзина",
-              color: AppColors.primaryColor,
-              size: 20,
-            ),
+            child: Text("Корзина",
+                style: TextStyle(
+                    color: AppColors.primaryColor,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold)),
           )),
           Container(
             margin: const EdgeInsets.only(top: 50, bottom: 46),
