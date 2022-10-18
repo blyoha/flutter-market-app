@@ -1,4 +1,4 @@
-# ozon_app
+# Flutter Market App
 
 A market app like Ozon.
 
